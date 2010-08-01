@@ -1,7 +1,6 @@
 #!/bin/bash
 #this is free software; it is licensed under the GNU GPLv2 license;
 #Author: xela92 <xela92@linuxzogno.org>
-#Crys I love you (l)
 PKG_NAME=`cat CONTROL/control |grep Package |sed 's/Package:\ //g'` 
 PKG_VERS=`cat CONTROL/control |grep Version |sed 's/Version:\ //g'`
 PKG_ARCH=`cat CONTROL/control |grep Architecture |sed 's/Architecture:\ //g'`
