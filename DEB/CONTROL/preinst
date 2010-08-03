@@ -3,12 +3,15 @@
 #Per me andrebbe fatto uno standard per capire come/dove gestire/mettere gli/i scripts/files 
 #Struttura del preinst: step 1: modifica pacchetti. step 2: modifica configurazioni.
 # non credo convenga creare tanti scripts eseguiti da questo, anche perché non so se dpkg li gestisce... Per ora stendo uno scriptino pattonissimo, poi ne riparliamo
-echo "running step 1"
 #Remove Packages - in ordine, programmi, guide, fonts e pacchetti lingua
+#setta la veriabile che poi sostituirà Italian, e che in qualche modo andrà pure nel conf di localepurge
+LANG="" > /etc/anguix_lang.conf
 apt-cache search language-pack | grep -v Italian |sed 's/\ -\ .*//g' |xargs dpkg --remove 
-#openoffice.org-help-en* --> lo rimuoviamo come abbiamo fatto per i pacchetti lingua generici insieme a quelli delle altre lingue 
+apt-cache search openoffice.org-help |grep -v [i-I]talian |sed 's/\ -\ .*//g' |xargs dpkg --remove
 apt-get purge -y evolution-exchange gnome-games* gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs ttf-takao-pgothic ttf-symbol-replacement ttf-thai-tlwg ttf-khmeros-core ttf-lao ttf-kacst-one ttf-wqy-microhei
-apt-get install -y localepurge vlc thunderbird emesene gimp evilwm mplayer htop sl cheese deborphan grub nautilus-actions wicd-curses
+apt-get install -y vlc thunderbird emesene gimp evilwm mplayer htop sl cheese deborphan grub nautilus-actions wicd-curses
+#ALT RAGA! Bisogna bloccare il postinst di localepurge!
+#IDEA: lo facciamo installare direttamente dal deb, localepurge quindi non esegue il postinst bensì si basa - grazie al nostro postinst, e al file di conf /etc/locale.nopurge -  sulla variabile che abbiamo settato prima, che andrà a completare il file di conf - sono un genio, lo so :P
 sudo apt-get -y autoremove
 update-grub #serve?
 # Hacks and Tricks
@@ -16,6 +19,7 @@ update-grub #serve?
 sysctl -q vm.swappiness
 sysctl vm.swappiness=10
 #TTY removal
+cp /etc/default/console-setup /etc/default/console-setup.backup
 echo "
 VERBOSE_OUTPUT=no
 ACTIVE_CONSOLES="/dev/tty[1-2]"
@@ -46,7 +50,7 @@ exec /sbin/getty -8 38400 tty6
 " > /etc/init/tty6.conf
 # Disattivazione di alcuni repo ufficiali (i repo ppa verranno installati direttamente col deb)
 #creo il backup prima
-cp /etc/apt/sources.list /etc/apt/sources.list.ubuntu.backup
+cp /etc/apt/sources.list /etc/apt/sources.list.backup
 #commento i repo e decommento multiverse e universe 
 cat /etc/apt/sources.list |sed 's/deb\ http://archive.ubuntu.com/ubuntu\ lucid\ main restricted/#deb\ http://archive.ubuntu.com/ubuntu\ lucid\ main\ restricted/g' |sed 's/deb\ http://security.ubuntu.com/ubuntu\ lucid-security\ main\ restricted/#deb\ http://security.ubuntu.com/ubuntu\ lucid-security\ main\ restricted/g' |sed 's/deb\ http://archive.ubuntu.com/ubuntu\ lucid-updates\ main\ restricted/#deb\ http://archive.ubuntu.com/ubuntu\ lucid-updates\ main\ restricted/g' |sed 's/#\ deb http://archive.ubuntu.com/ubuntu\ lucid\ universe/deb\ http://archive.ubuntu.com/ubuntu\ lucid universe/g' |sed 's/#\ deb\ http://archive.ubuntu.com/ubuntu\ lucid\ multiverse/deb\ http://archive.ubuntu.com/ubuntu\ lucid\ multiverse/g'> /tmp/sources.list.tmp
 mv /tmp/sources.list.tmp /etc/apt/sources.list
@@ -59,7 +63,10 @@ mv /tmp/lsb-release.tmp /etc/lsb-release
 
 
 
-# Nel postinst inseriremo anche le chiamata gconf da aggiungere di default, per esempio per mettere i pannelli trasparenti di default, aggiungere dockbarx di default, etc. etc.
-#Nel postinst verrà anche messa l'esecuzione di nautilus-scripts-installer, che aggiunge gli scripts by xela92 in nautilus-actions (i files per fare ciò sono nella dir /usr/share/nautilus-scripts-installer, che verrà installata tramite deb)
+# Nel postinst inseriremo anche le chiamata gconf da aggiungere di default(DONE), per esempio per mettere i pannelli trasparenti di default (DONE), aggiungere dockbarx di default, etc. etc.
+#Nel postinst verrà anche messa l'esecuzione di nautilus-scripts-installer, che aggiunge gli scripts by xela92 in nautilus-actions (DONE) (i files per fare ciò sono nella dir /usr/share/nautilus-scripts-installer, che verrà installata tramite deb)--> TODO
+
+#Da aggiungere: rm tutti i files inutili, tipo temi etc
+# aggiungere immagini a tema, suoni a tema --> magari per la beta questo
 
 
