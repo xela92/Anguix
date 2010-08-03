@@ -1,5 +1,5 @@
 #!/bin/bash
-#postinst script of Anguix-installer
+#postinst script of anguix-installer
 cp /usr/share/gconf/defaults/05_panel-default-setup.entries /usr/share/gconf/defaults/05_panel-default-setup.entries.backup
 cat /usr/share/gconf/defaults/05_panel-default-setup.entries |sed 's/<string>yelp_launcher<\/string>//g' |sed 's/<string>indicator_applet</string>//g'  > /tmp/05_panel-default-setup.entries.tmp
 mv /tmp/05_panel-default-setup.entries.tmp /usr/share/gconf/defaults/05_panel-default-setup.entries
