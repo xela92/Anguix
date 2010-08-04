@@ -1,0 +1,23 @@
+#!/bin/bash
+#postinst script of anguix-installer
+cp /usr/share/gconf/defaults/05_panel-default-setup.entries /usr/share/gconf/defaults/05_panel-default-setup.entries.backup
+cat /usr/share/gconf/defaults/05_panel-default-setup.entries |sed 's/<string>yelp_launcher<\/string>//g' |sed 's/<string>indicator_applet</string>//g'  > /tmp/05_panel-default-setup.entries.tmp
+mv /tmp/05_panel-default-setup.entries.tmp /usr/share/gconf/defaults/05_panel-default-setup.entries
+
+cp /usr/share/gconf/defaults/10_metacity-common /usr/share/gconf/defaults/10_metacity-common.backup
+echo "/apps/panel/default_setup/toplevels/bottom_panel/background/opacity 34327
+/apps/panel/default_setup/toplevels/top_panel/background/opacity 49913
+/apps/panel/default_setup/toplevels/bottom_panel/background/type color
+/apps/panel/default_setup/toplevels/top_panel/background/type color
+/apps/panel/default_setup/toplevels/top_panel/background/color #181818
+/apps/panel/default_setup/toplevels/bottom_panel/background/color #181818" >> /usr/share/gconf/defaults/10_metacity-common
+ 
+ cp /usr/share/gconf/defaults/16_ubuntu-artwork /usr/share/gconf/defaults/16_ubuntu-artwork.backup
+cat /usr/share/gconf/defaults/16_ubuntu-artwork | sed 's/\/desktop\/gnome\/interface\/gtk_theme.*/\/desktop\/gnome\/interface\/gtk_theme\ \ \ \ \ \ Viridis_Theme-3.0/g' |sed 's/\/desktop\/gnome\/interface\/gtk_color_scheme.*/\/desktop\/gnome\/interface\/gtk_color_scheme\ fg_color:#28d69a6c5bb1,bg_color:#181818181818,text_color:#00000448002e,base_color:#c571f8fee6c6,selected_fg_color:#2e28a0f21775,selected_bg_color:#3da1f3753e1e,tooltip_fg_color:#000000000000,tooltip_bg_color:#9d9d9d9d9d9d6c5/g' |sed 's/\/apps\/metacity\/general\/theme.*/\/apps\/metacity\/general\/theme\ \ \ \ \ \ \ \ Turrican/g' > /tmp/16_ubuntu-artwork.tmp
+mv /tmp/16_ubuntu-artwork.tmp /usr/share/gconf/defaults/16_ubuntu-artwork
+
+cp /usr/share/gconf/defaults/16_ubuntu-wallpapers /usr/share/gconf/defaults/16_ubuntu-wallpapers.backup 
+cat /usr/share/gconf/defaults/16_ubuntu-wallpapers |sed 's/\/desktop\/gnome\/background\/picture_filename.*/\/desktop\/gnome\/background\/picture_filename\ "/usr/share/backgrounds/moreliaviridis.png"/g' > /tmp/16_ubuntu-wallpapers.tmp
+mv /tmp/16_ubuntu-wallpapers.tmp /usr/share/gconf/defaults/16_ubuntu-wallpapers
+
+nautilus-scripts-installer
