@@ -1,0 +1,196 @@
+#!/bin/bash
+#Comando per estrarre, onde evitare l'errore di trailing garbage: gunzip -q < file.tar.gz | tar xvf - 
+#tail -n+4 $0 > cazzo.tar.gz; exit 0
+if [ "`whoami`" != "root" ]; then
+gksu $0 $1
+if [ "$?" = "1" ]; then
+exit 0
+fi
+fi
+function preinst ( )
+{
+#Remove Packages - in ordine, programmi, guide, fonts e pacchetti lingua
+#setta le variabili che andranno nel conf di localepurge, così che localepurge possa essere configurato senza la necessità di utilizzare il suo configuratore, ingestibile durante l'installazione.
+#S_LOCALE=it; M_LOCALE=it_IT; L_LOCALE=italian; UTF8_LOCALE=it_IT.UTF-8
+UTF8_LOCALE=`echo $LANG |sed 's/.utf8/.UTF-8/g'`
+S_LOCALE=`for i in 1,2; do echo $LANG |cut -c $i; done`
+M_LOCALE=`echo $LANG |cut -d '.' -f1`
+L_LOCALE=`cat /etc/locale.alias |grep $M_LOCALE |sed 's/\ .*//g'`
+for FIRSTCHAR in 1
+do 
+UPPER=`echo "$L_LOCALE" | cut -c $FIRSTCHAR  |tr '[a-z]' '[A-Z]'` 
+LOWER=`echo "$L_LOCALE" |cut -c $FIRSTCHAR` 
+LANG_PACK=`echo "$L_LOCALE" | sed 's/./'[''$LOWER''-''$UPPER'']'/'$FIRSTCHAR` > /tmp/anguix_lang.tmp
+done
+echo "S_LOCALE: $S_LOCALE" > /etc/anguix_lang.conf
+echo "M_LOCALE: $M_LOCALE" > /etc/anguix_lang.conf
+echo "L_LOCALE: $L_LOCALE" >> /etc/anguix_lang.conf
+echo "LANG_PACK: $LANG_PACK" >> /etc/anguix_lang.conf
+echo "UTF8_LOCALE: $UTF8_LOCALE" >> /etc/anguix_lang.conf
+apt-get install -y vlc thunderbird gimp evilwm mplayer htop sl cheese deborphan grub nautilus-actions wicd-curses
+#al posto di emesene voglio mettere amsn turbo modificato by me
+apt-get purge -y evolution-exchange, gnome-games, gbrainy, example-content, empathy, empathy-common, gwibber, rhythmbox, tomboy, yelp, gnome-user-guide, ubuntu-docs, ttf-takao-pgothic, ttf-symbol-replacement, ttf-thai-tlwg, ttf-khmeros-core, ttf-lao, ttf-kacst-one, ttf-wqy-microhei, gnome-themes-ubuntu, gnome-themes-selected 
+apt-cache search language-pack | grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g' |xargs dpkg --remove 
+apt-cache search openoffice.org-help |grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g' |xargs dpkg --remove
+UDESK=`dpkg --status ubuntu-desktop |grep installed |sed 's/Status\:\ .*\ ok//g'`
+if [ "$UDESK" = "installed" ]; then
+# evito apt-get remove ubuntu-desktop, scrivo un file di conf
+echo "1" > /etc/udesk.conf
+fi
+#Facciamo installare localepurge direttamente dal deb, quindi non esegue il postinst bensì si basa - grazie al nostro postinst, e al file di conf /etc/locale.nopurge -  sulla variabile che abbiamo settato prima, che andrà a completare il file di conf - sono un genio, lo so :P
+update-grub #serve?
+# Hacks and Tricks
+#swap trick--> setta la "swappiness", la percentuale di swap.
+sysctl -q vm.swappiness
+sysctl vm.swappiness=10
+#TTY removal
+cp /etc/default/console-setup /etc/default/console-setup.backup
+cp /etc/init/tty3.conf /etc/init/tty3.conf.backup
+cp /etc/init/tty4.conf /etc/init/tty4.conf.backup
+cp /etc/init/tty5.conf /etc/init/tty5.conf.backup
+cp /etc/init/tty6.conf /etc/init/tty6.conf.backup
+echo "
+VERBOSE_OUTPUT=no
+ACTIVE_CONSOLES="/dev/tty[1-2]"
+CHARMAP="UTF-8"
+CODESET="Lat15"
+FONTFACE="VGA"
+FONTSIZE="16"
+XKBMODEL="pc105"
+XKBLAYOUT="it"
+XKBVARIANT=""
+XKBOPTIONS=""
+"> /etc/default/console-setup
+echo "
+respawn
+exec /sbin/getty -8 38400 tty3
+" > /etc/init/tty3.conf
+echo "
+respawn
+exec /sbin/getty -8 38400 tty4
+" > /etc/init/tty4.conf
+echo "
+respawn
+exec /sbin/getty -8 38400 tty5
+" > /etc/init/tty5.conf
+echo "
+respawn
+exec /sbin/getty -8 38400 tty6
+" > /etc/init/tty6.conf
+
+# Disattivazione di alcuni repo ufficiali (i repo ppa verranno installati direttamente col deb)
+#creo il backup prima
+cp /etc/apt/sources.list /etc/apt/sources.list.backup
+#commento i repo e decommento multiverse e universe 
+cat /etc/apt/sources.list |sed 's/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ main\ restricted/#deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ main\ restricted/g' |sed 's/deb\ http:\/\/security.ubuntu.com\/ubuntu\ lucid-security\ main\ restricted/#deb\ http:\/\/security.ubuntu.com\/ubuntu\ lucid-security\ main\ restricted/g' |sed 's/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid-updates\ main\ restricted/#deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid-updates\ main\ restricted/g' |sed 's/#\ deb http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ universe/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid universe/g' |sed 's/#\ deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ multiverse/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ multiverse/g'> /tmp/sources.list.tmp
+mv /tmp/sources.list.tmp /etc/apt/sources.list
+#cambio nome distro
+cp /etc/lsb-release /etc/lsb-release.ubuntu
+cat /etc/lsb-release |sed 's/[u-U]buntu/Anguix/g' |sed 's/lucid/Viridis/g' |sed 's/10.04.1 LTS/0.1alpha5/g' | sed 's/10.04/0.1alpha5/g' > /tmp/lsb-release.tmp
+mv /tmp/lsb-release.tmp /etc/lsb-release
+
+# Nel postinst inseriremo anche le chiamata gconf da aggiungere di default(DONE), per esempio per mettere i pannelli trasparenti di default (DONE), aggiungere dockbarx di default, etc. etc.
+#Nel postinst verrà anche messa l'esecuzione di nautilus-scripts-installer, che aggiunge gli scripts by xela92 in nautilus-actions (DONE) (i files per fare ciò sono nella dir /usr/share/nautilus-scripts-installer, che verrà installata tramite deb)--> TODO
+
+#Da aggiungere: rm tutti i files inutili, tipo temi etc
+#IDEA: apt-get remove temididefault (DONE), installazione via deb di quelli ok, workaroundosa ma mi piace
+#
+# aggiungere immagini a tema, suoni a tema --> magari per la beta questo
+}
+function inst ( )
+{
+LINE=`awk '/^END_OF_FILE/ {print NR + 1; exit 0; }' $0`
+tail -n+$LINE $0 > /tmp/Anguix-files.tar.gz
+gunzip -q < /tmp/Anguix-files.tar.gz | tar -C / xzvf - > /etc/anguix_files.conf
+}
+function postinst ( )
+{
+#NON TOCCATELO, questo lo gestisco io.
+# 1
+cp /usr/share/gconf/defaults/05_panel-default-setup.entries /usr/share/gconf/defaults/05_panel-default-setup.entries.backup
+cat /usr/share/gconf/defaults/05_panel-default-setup.entries |sed 's/<string>yelp_launcher<\/string>//g' |sed 's/<string>indicator_applet</string>//g'  > /tmp/05_panel-default-setup.entries.tmp
+mv /tmp/05_panel-default-setup.entries.tmp /usr/share/gconf/defaults/05_panel-default-setup.entries
+
+# 2
+cp /usr/share/gconf/defaults/10_metacity-common /usr/share/gconf/defaults/10_metacity-common.backup
+echo "/apps/panel/default_setup/toplevels/bottom_panel/background/opacity 34327
+/apps/panel/default_setup/toplevels/top_panel/background/opacity 49913
+/apps/panel/default_setup/toplevels/bottom_panel/background/type color
+/apps/panel/default_setup/toplevels/top_panel/background/type color
+/apps/panel/default_setup/toplevels/top_panel/background/color #181818
+/apps/panel/default_setup/toplevels/bottom_panel/background/color #181818" >> /usr/share/gconf/defaults/10_metacity-common
+ 
+# 3
+ cp /usr/share/gconf/defaults/16_ubuntu-artwork /usr/share/gconf/defaults/16_ubuntu-artwork.backup
+cat /usr/share/gconf/defaults/16_ubuntu-artwork | sed 's/\/desktop\/gnome\/interface\/gtk_theme.*/\/desktop\/gnome\/interface\/gtk_theme\ \ \ \ \ \ Viridis_Theme-3.0/g' |sed 's/\/desktop\/gnome\/interface\/gtk_color_scheme.*/\/desktop\/gnome\/interface\/gtk_color_scheme\ fg_color:#28d69a6c5bb1,bg_color:#181818181818,text_color:#00000448002e,base_color:#c571f8fee6c6,selected_fg_color:#2e28a0f21775,selected_bg_color:#3da1f3753e1e,tooltip_fg_color:#000000000000,tooltip_bg_color:#9d9d9d9d9d9d6c5/g' |sed 's/\/apps\/metacity\/general\/theme.*/\/apps\/metacity\/general\/theme\ \ \ \ \ \ \ \ Turrican/g' > /tmp/16_ubuntu-artwork.tmp
+mv /tmp/16_ubuntu-artwork.tmp /usr/share/gconf/defaults/16_ubuntu-artwork
+
+# 4
+cp /usr/share/gconf/defaults/16_ubuntu-wallpapers /usr/share/gconf/defaults/16_ubuntu-wallpapers.backup 
+cat /usr/share/gconf/defaults/16_ubuntu-wallpapers |sed 's/\/desktop\/gnome\/background\/picture_filename.*/\/desktop\/gnome\/background\/picture_filename\ "/usr/share/backgrounds/moreliaviridis.png"/g' > /tmp/16_ubuntu-wallpapers.tmp
+mv /tmp/16_ubuntu-wallpapers.tmp /usr/share/gconf/defaults/16_ubuntu-wallpapers
+
+nautilus-scripts-installer
+cat /etc/anguix_lang.conf |grep S_LOCALE |sed 's/S_LOCALE:\ //g' >> /etc/locale.nopurge
+cat /etc/anguix_lang.conf |grep M_LOCALE |sed 's/M_LOCALE:\ //g' >> /etc/locale.nopurge
+cat /etc/anguix_lang.conf |grep UTF8_LOCALE |sed 's/UTF8_LOCALE:\ //g' >> /etc/locale.nopurge
+}
+function prerm ( )
+{
+mv /etc/apt/sources.list.backup /etc/apt/sources.list
+mv /etc/lsb-release.ubuntu /etc/lsb-release 
+# 1
+mv /usr/share/gconf/defaults/05_panel-default-setup.entries.backup /usr/share/gconf/defaults/05_panel-default-setup.entries
+# 2
+mv /usr/share/gconf/defaults/10_metacity-common.backup /usr/share/gconf/defaults/10_metacity-common
+# 3
+mv /usr/share/gconf/defaults/16_ubuntu-artwork.backup /usr/share/gconf/defaults/16_ubuntu-artwork
+# 4
+mv /usr/share/gconf/defaults/16_ubuntu-wallpapers.backup /usr/share/gconf/defaults/16_ubuntu-wallpapers  
+}
+function removal ( )
+{
+zenity --question --title="Warning" --text="this will uninstall all packages Anguix has installed. If you lose some program you wanted to keep, just re-install it. You won't lose your data. Do you want me to uninstall them, or to keep them?"
+if [ "$?" = "1" ]; then
+zenity --info --title="Nothing done." --text="Exit. Packages are been kept."
+exit 0
+else
+apt-get remove -y vlc thunderbird gimp evilwm mplayer htop sl cheese deborphan grub nautilus-actions wicd-curses |zenity --progress --auto-close --title="Removing packages" --text="removing packages installed with Anguix..." 
+fi
+#ocio a questa funzione, spero non faccia del male a nessuno...
+cat /etc/anguix_files.conf |xargs rm
+}
+function postrm ( )
+{
+mv /etc/default/console-setup.backup /etc/default/console-setup 
+mv /etc/init/tty3.conf.backup /etc/init/tty3.conf
+mv /etc/init/tty4.conf.backup /etc/init/tty4.conf
+mv /etc/init/tty5.conf.backup /etc/init/tty5.conf
+mv /etc/init/tty6.conf.backup /etc/init/tty6.conf
+if [ "`cat /etc/udesk.conf`" = "1" ]; then
+apt-get install ubuntu-desktop
+fi
+rm /etc/udesk.conf
+rm /etc/anguix_lang.conf
+}
+case $1 in
+	install) echo "running preinst"
+		 preinst
+		 echo "installing files"
+		 inst
+ 		 echo "running postinst"
+		 postinst
+	;;
+	remove) echo "running prerm"
+		prerm
+		echo "removing files"
+		removal		
+		echo "running postrm"		
+		postrm
+	;;
+	*) echo "usage: {$0 install|remove}"
+	;;
+esac
+exit 0
+END_OF_FILE
+blablablatero
