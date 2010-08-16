@@ -1,3 +1,2 @@
-This is the deb source of the package Anguix-Installer, which makes the installation of Anguix very simple: you just need to install the deb package.
-To clone the git, do "git clone git://github.com/xela92/Anguix.git"
-The build.sh script helps you to build the deb. To use it, just do "./build.sh" outside the directory "DEB" (in the dir you cloned the git).
+This is the new script Anguix-Installer, the DEB has been removed because had limitations we couldn't stand.
+To clone the git, do "git clone git://github.com/xela92/Anguix.git".
