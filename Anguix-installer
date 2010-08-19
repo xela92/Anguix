@@ -1,14 +1,10 @@
 #!/bin/bash
 #Comando per estrarre, onde evitare l'errore di trailing garbage: gunzip -q < file.tar.gz | tar xvf - 
 #tail -n+4 $0 > cazzo.tar.gz; exit 0
-if [ "`whoami`" != "root" ]; then
-gksu $0 $1
-if [ "$?" = "1" ]; then
-exit 0
-fi
-fi
+echo "Welcome to the Anguix Installer"
 function preinst ( )
 {
+#Struttura del preinst: 1: modifica pacchetti. 2: modifica configurazioni.
 #Remove Packages - in ordine, programmi, guide, fonts e pacchetti lingua
 #setta le variabili che andranno nel conf di localepurge, cosÃ¬ che localepurge possa essere configurato senza la necessitÃ  di utilizzare il suo configuratore, ingestibile durante l'installazione.
 #S_LOCALE=it; M_LOCALE=it_IT; L_LOCALE=italian; UTF8_LOCALE=it_IT.UTF-8
@@ -27,9 +23,7 @@ echo "M_LOCALE: $M_LOCALE" > /etc/anguix_lang.conf
 echo "L_LOCALE: $L_LOCALE" >> /etc/anguix_lang.conf
 echo "LANG_PACK: $LANG_PACK" >> /etc/anguix_lang.conf
 echo "UTF8_LOCALE: $UTF8_LOCALE" >> /etc/anguix_lang.conf
-apt-get install -y vlc thunderbird gimp evilwm mplayer htop sl cheese deborphan grub nautilus-actions wicd-curses
-#al posto di emesene voglio mettere amsn turbo modificato by me
-apt-get purge -y evolution-exchange, gnome-games, gbrainy, example-content, empathy, empathy-common, gwibber, rhythmbox, tomboy, yelp, gnome-user-guide, ubuntu-docs, ttf-takao-pgothic, ttf-symbol-replacement, ttf-thai-tlwg, ttf-khmeros-core, ttf-lao, ttf-kacst-one, ttf-wqy-microhei, gnome-themes-ubuntu, gnome-themes-selected 
+apt-get purge -y evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected  
 apt-cache search language-pack | grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g' |xargs dpkg --remove 
 apt-cache search openoffice.org-help |grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g' |xargs dpkg --remove
 UDESK=`dpkg --status ubuntu-desktop |grep installed |sed 's/Status\:\ .*\ ok//g'`
@@ -38,7 +32,6 @@ if [ "$UDESK" = "installed" ]; then
 echo "1" > /etc/udesk.conf
 fi
 #Facciamo installare localepurge direttamente dal deb, quindi non esegue il postinst bensÃ¬ si basa - grazie al nostro postinst, e al file di conf /etc/locale.nopurge -  sulla variabile che abbiamo settato prima, che andrÃ  a completare il file di conf - sono un genio, lo so :P
-update-grub #serve?
 # Hacks and Tricks
 #swap trick--> setta la "swappiness", la percentuale di swap.
 sysctl -q vm.swappiness
@@ -78,7 +71,7 @@ respawn
 exec /sbin/getty -8 38400 tty6
 " > /etc/init/tty6.conf
 
-# Disattivazione di alcuni repo ufficiali (i repo ppa verranno installati direttamente col deb)
+# Disattivazione di alcuni repo ufficiali (i repo ppa verranno installati direttamente col tar.gz)
 #creo il backup prima
 cp /etc/apt/sources.list /etc/apt/sources.list.backup
 #commento i repo e decommento multiverse e universe 
@@ -87,21 +80,22 @@ mv /tmp/sources.list.tmp /etc/apt/sources.list
 #cambio nome distro
 cp /etc/lsb-release /etc/lsb-release.ubuntu
 cat /etc/lsb-release |sed 's/[u-U]buntu/Anguix/g' |sed 's/lucid/Viridis/g' |sed 's/10.04.1 LTS/0.1alpha5/g' | sed 's/10.04/0.1alpha5/g' > /tmp/lsb-release.tmp
+#todo: mettere direttamente l'lsb-release nel tar.gz
 mv /tmp/lsb-release.tmp /etc/lsb-release
 
 # Nel postinst inseriremo anche le chiamata gconf da aggiungere di default(DONE), per esempio per mettere i pannelli trasparenti di default (DONE), aggiungere dockbarx di default, etc. etc.
 #Nel postinst verrÃ  anche messa l'esecuzione di nautilus-scripts-installer, che aggiunge gli scripts by xela92 in nautilus-actions (DONE) (i files per fare ciÃ² sono nella dir /usr/share/nautilus-scripts-installer, che verrÃ  installata tramite deb)--> TODO
 
 #Da aggiungere: rm tutti i files inutili, tipo temi etc
-#IDEA: apt-get remove temididefault (DONE), installazione via deb di quelli ok, workaroundosa ma mi piace
+#IDEA: apt-get remove temididefault (DONE), installazione via tar.gz di quelli ok, workaroundosa ma mi piace
 #
-# aggiungere immagini a tema, suoni a tema --> magari per la beta questo
+# aggiungere immagini a tema, suoni a tema --> magari per la beta questo OPPURE TOGLIERE TUTTI I FASTIDIOSI SUONI DI SISTEMA, ALMENO DI DEFAULT, CHE NE DICI??? --> accettata
 }
 function inst ( )
 {
 LINE=`awk '/^END_OF_FILE/ {print NR + 1; exit 0; }' $0`
 tail -n+$LINE $0 > /tmp/Anguix-files.tar.gz
-gunzip -q < /tmp/Anguix-files.tar.gz | tar -C / xzvf - > /etc/anguix_files.conf
+gunzip -q < /tmp/Anguix-files.tar.gz | tar -C / xvf - 
 }
 function postinst ( )
 {
@@ -137,6 +131,7 @@ cat /etc/anguix_lang.conf |grep UTF8_LOCALE |sed 's/UTF8_LOCALE:\ //g' >> /etc/l
 }
 function prerm ( )
 {
+    # echo "Stronzo, perchÃ© cazzo rimuovi Anguix??? Eh maledetta troia??? Guarda che non puoi! Non ti permetto di farlo! Cosa? Il sistema Ã¨ tuo e decidi tu? Eh no caro, a me basta poco per impedirtelo! Non ci credi? Guarda!"; kernel_panic(); exit 1032; # # definire la funzione kernel_panic(), chi lo fa?
 mv /etc/apt/sources.list.backup /etc/apt/sources.list
 mv /etc/lsb-release.ubuntu /etc/lsb-release 
 # 1
@@ -147,18 +142,11 @@ mv /usr/share/gconf/defaults/10_metacity-common.backup /usr/share/gconf/defaults
 mv /usr/share/gconf/defaults/16_ubuntu-artwork.backup /usr/share/gconf/defaults/16_ubuntu-artwork
 # 4
 mv /usr/share/gconf/defaults/16_ubuntu-wallpapers.backup /usr/share/gconf/defaults/16_ubuntu-wallpapers  
+echo "run ang_clean to complete the removal of Anguix."
 }
 function removal ( )
 {
-zenity --question --title="Warning" --text="this will uninstall all packages Anguix has installed. If you lose some program you wanted to keep, just re-install it. You won't lose your data. Do you want me to uninstall them, or to keep them?"
-if [ "$?" = "1" ]; then
-zenity --info --title="Nothing done." --text="Exit. Packages are been kept."
-exit 0
-else
-apt-get remove -y vlc thunderbird gimp evilwm mplayer htop sl cheese deborphan grub nautilus-actions wicd-curses |zenity --progress --auto-close --title="Removing packages" --text="removing packages installed with Anguix..." 
-fi
-#ocio a questa funzione, spero non faccia del male a nessuno...
-cat /etc/anguix_files.conf |xargs rm
+    #qui dentro ci sta rm in tutta la sua bellezza, con i dati del tar della funzione inst
 }
 function postrm ( )
 {
@@ -174,25 +162,27 @@ rm /etc/udesk.conf
 rm /etc/anguix_lang.conf
 }
 case $1 in
-	install) echo "running preinst"
-		 preinst
-		 echo "installing files"
-		 inst
- 		 echo "running postinst"
-		 postinst
-	;;
-	remove) echo "running prerm"
-		prerm
-		echo "removing files"
-		removal		
-		echo "running postrm"		
-		postrm
-	;;
-	*) echo "usage: {$0 install|remove}"
-	;;
+        install) echo "running preinst"
+                 preinst
+                 echo "installing files"
+                 inst
+                  echo "running postinst"
+                 postinst
+        ;;
+        remove) echo "running prerm"
+                prerm
+                echo "removing files"
+                removal                
+                echo "running postrm"                
+                postrm
+        ;;
+        *) echo "usage: {$0 install|remove}"
+        ;;
 esac
 exit 0
 END_OF_FILE
+blablablatero case libri auto viaggi fogli di giornale
+
 ‹ µiL ì=iwÛF’şJıŠ^z^"9	€¤®X/Åã7’œ•åäÍîÌã4É&‰'Í@ÎËİó3¶úÀÑ@(Êvl2v$UÕÕuWwnµI8l?zĞ	Ÿı^ı´ö{fúgôydY]»;û{LËìv»PïaÙŸEb¡GØ%·epËîÿI?-®Ÿ¸¤å„1Sğ(´@ÿ–İµ2ú·»¶ù™ÁLöóëÿ¿€FNúÎ`ñÑ¡ÙE/¼ÉÂ¹E¿:¾wvÑ ØĞ'ìÇ£ ô³K}â…Â­«F·ÄÅ6Úşı|2 ¾÷|Œƒğ†<‚q}¿ÓÚúò¸=t¡€†!E.F32"3ÃÈu†ÄûÈB/\ í7çĞ›_NwÑµ(ºî À#Cê#â Àñ&Ô…ŸtŞ`ŸÀ§ÀœmAÃxM‚«Îw‘ã¢á{âÒ	ÒÙÜ%À@€ıÿc"˜SÏ8.>¹&(X¸@?¤­­ÅÇ t6<¥×‡#vêx‹[tæx!zá‡Æ%Á34'>›ç`D\˜×ö4çGíöÄ£3b¸”^µ¨?iÃ4B`;˜Ò›Ö|:oŸ-|ßñ°ÁHş$ïvööwvaH?f#\„ x&áºDCêÃ·)A3ì±¿0-‡©ÍƒßñF×ÿfú¦hîÓ	Ùï¢Ğµ.¦Ğ ÀŞÈ§æŠİ‘³‹Ş‡dÌá0$m3êS¦~ pí`„İ˜ğ6§3”9öAbèöõ\‹¸aTâÉp »1Ñ€¢Kì9½X¸äc½a“ƒiâ	şøÑAG;[ŸÛA¾òÿhŒeñß‚Ú ÿáâ&şŠÏåÔ	Dô§ù°ƒòÉît1¿ÅƒşáÒ¨ÿ6@ÒÆFŒF!Cˆ%ñ :Ö‡|ŸÅü™Cƒè‡¨ÇC>Dé(â0À%ã¦“úl(ëI*üß8®‹ì¯1d¤„ø8&7ßî6ÃƒY@ 0øŠ½«8üC¨ä º0¦b~œ!˜ûşÂd×’ØĞ;æ æ—¤ mWˆæâÑ\ÌÂÌå!>i˜`
 y„±;|Øh¸8ƒ$n¦4àóóÉ÷Î/š,@ ›Xş%~ZmŸÒğa@Şÿíï/ëÿ:VÇìYûëÿöºö¦ÿû©ÿOÁÃØAJÿ\×™Ÿ‘ş­=Ğ»µ×eùßîv>±ş™Êà–İÿ“~2ú—©¿É¾–¹‹¨¥«úïÙ{{ıŠÏRıOÂ+Ã¾ŸÔÑ¿¹oƒş÷:½O½ş·Ñ¹şá§?\mŒrıw@ïİŒş÷»ö§îÿ¾Qıo1ıaH=Ã™á	ôaÇÈÚb—ûĞSP¿yçrŒšã‰¸tôØ><Ä½Á?¼A|Å:`ÿÁhy¢kÃŞø€ìıš—Û0º
 ïšæ? ásÉúÊ~B¢3w:$u+5Á`@‰R7tæ)$aCÉçpÄşknmáôvMnáÆz …6·~ßÚBè/BÇ]o¡Åz]v<âyÔŸa·İù£ÌçõÌbÌ±-mŸM8‹Ç0KGØ¿ê;Ş˜
