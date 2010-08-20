@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="recents" mtime="1278103919" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>/desktop/gnome/interface/gtk_color_scheme</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>/apps/metacity/general/theme</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>/apps/panel/default_setup/toplevels/top_panel/animation_speed</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>/apps/panel/default_setup/toplevels/top_panel/x_centered</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>/apps/panel/default_setup/toplevels/top_panel/background/type</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>/apps/panel/default_setup/toplevels/top_panel/background/opacity</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>/apps/panel/default_setup/toplevels/top_panel/background/color</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>/apps/panel/default_setup/toplevels/bottom_panel/background/type</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>/apps/panel/default_setup/toplevels/bottom_panel/background/opacity</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>/apps/panel/default_setup/toplevels/bottom_panel/background/color</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>/desktop/gnome/interface/gtk_theme</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>/desktop/gnome/url-handlers/mailto/command</stringvalue>
+		</li>
+	</entry>
+</gconf>

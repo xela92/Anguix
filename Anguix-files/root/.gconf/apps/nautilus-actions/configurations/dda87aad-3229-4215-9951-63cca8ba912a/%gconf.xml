@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="toolbar-label" mtime="1277120215" type="string">
+		<stringvalue>Estrai nella cartella...</stringvalue>
+	</entry>
+	<entry name="label" mtime="1277120215" type="string">
+		<stringvalue>Estrai nella cartella...</stringvalue>
+	</entry>
+	<entry name="items" mtime="1277120215" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>profile-zero</stringvalue>
+		</li>
+	</entry>
+	<entry name="type" mtime="1277120215" type="string">
+		<stringvalue>Action</stringvalue>
+	</entry>
+</gconf>

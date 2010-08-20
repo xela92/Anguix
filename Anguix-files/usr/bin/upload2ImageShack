@@ -1,0 +1,4 @@
+#!/bin/bash
+case $1 in
+	file:///*) echo $1 |sed 's/file:\/\///g' |xargs sendToImageshack.py
+esac  

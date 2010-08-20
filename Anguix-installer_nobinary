@@ -24,12 +24,15 @@ echo "L_LOCALE: $L_LOCALE" >> /etc/anguix_lang.conf
 echo "LANG_PACK: $LANG_PACK" >> /etc/anguix_lang.conf
 echo "UTF8_LOCALE: $UTF8_LOCALE" >> /etc/anguix_lang.conf
 apt-get purge -y evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected  
-apt-cache search language-pack | grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g' |xargs dpkg --remove 
-apt-cache search openoffice.org-help |grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g' |xargs dpkg --remove
+RMPACKS1=`apt-cache search language-pack | grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g'` 
+RMPACKS2=`apt-cache search openoffice.org-help |grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g'`
+apt-get -y purge $RMPACKS1 $RMPACKS2
 UDESK=`dpkg --status ubuntu-desktop |grep installed |sed 's/Status\:\ .*\ ok//g'`
 if [ "$UDESK" = "installed" ]; then
 # evito apt-get remove ubuntu-desktop, scrivo un file di conf
 echo "1" > /etc/udesk.conf
+else
+echo "0" > /etc/udesk.conf
 fi
 #Facciamo installare localepurge direttamente dal deb, quindi non esegue il postinst bensì si basa - grazie al nostro postinst, e al file di conf /etc/locale.nopurge -  sulla variabile che abbiamo settato prima, che andrà a completare il file di conf - sono un genio, lo so :P
 # Hacks and Tricks
@@ -142,10 +145,10 @@ mv /usr/share/gconf/defaults/10_metacity-common.backup /usr/share/gconf/defaults
 mv /usr/share/gconf/defaults/16_ubuntu-artwork.backup /usr/share/gconf/defaults/16_ubuntu-artwork
 # 4
 mv /usr/share/gconf/defaults/16_ubuntu-wallpapers.backup /usr/share/gconf/defaults/16_ubuntu-wallpapers  
-echo "run ang_clean to complete the removal of Anguix."
 }
 function removal ( )
 {
+echo "caramelle"
     #qui dentro ci sta rm in tutta la sua bellezza, con i dati del tar della funzione inst
 }
 function postrm ( )
@@ -180,6 +183,3 @@ case $1 in
         ;;
 esac
 exit 0
-END_OF_FILE
-blablablatero case libri auto viaggi fogli di giornale
-

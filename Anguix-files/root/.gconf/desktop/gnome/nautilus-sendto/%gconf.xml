@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="last_medium" mtime="1278060290" type="string">
+		<stringvalue>evolution</stringvalue>
+	</entry>
+</gconf>

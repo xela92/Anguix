@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="toolbar-label" mtime="1276508583" type="string">
+		<stringvalue>VLC Add To Playlist</stringvalue>
+	</entry>
+	<entry name="icon" mtime="1276508583" type="string">
+		<stringvalue>vlc</stringvalue>
+	</entry>
+	<entry name="label" mtime="1276508583" type="string">
+		<stringvalue>VLC Add To Playlist</stringvalue>
+	</entry>
+	<entry name="items" mtime="1276508583" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>profile-zero</stringvalue>
+		</li>
+	</entry>
+	<entry name="type" mtime="1276508583" type="string">
+		<stringvalue>Action</stringvalue>
+	</entry>
+</gconf>

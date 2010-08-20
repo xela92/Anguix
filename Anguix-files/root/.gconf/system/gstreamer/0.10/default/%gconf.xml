@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="audiosrc" mtime="1278060525" type="string">
+		<stringvalue>autoaudiosrc</stringvalue>
+	</entry>
+	<entry name="videosrc" mtime="1278060525" type="string">
+		<stringvalue>v4l2src</stringvalue>
+	</entry>
+	<entry name="videosink" mtime="1278060525" type="string">
+		<stringvalue>autovideosink</stringvalue>
+	</entry>
+	<entry name="audiosink" mtime="1278060525" type="string">
+		<stringvalue>autoaudiosink</stringvalue>
+	</entry>
+</gconf>

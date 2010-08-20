@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Dust Sand
+Comment=Ubuntu Dust theme
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Dust Sand
+MetacityTheme=Dust Sand
+IconTheme=Humanity
+CursorTheme=DMZ-White

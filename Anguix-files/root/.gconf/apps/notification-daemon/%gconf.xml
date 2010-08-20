@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="theme" mtime="1278098891" type="string">
+		<stringvalue>ubuntu</stringvalue>
+	</entry>
+</gconf>

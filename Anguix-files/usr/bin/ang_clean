@@ -1,0 +1,8 @@
+#!/bin/bash
+zenity --question --title="Warning" --text="this will uninstall all packages Anguix has installed. If you lose some program you wanted to keep, just re-install it. You won't lose your data. Do you want me to uninstall them, or to keep them?"
+if [ "$?" = "1" ]; then
+zenity --info --title="Nothing done." --text="Exit. Packages are been kept."
+exit 0
+else
+apt-get remove -y vlc thunderbird emesene gimp evilwm mplayer htop sl cheese deborphan grub nautilus-actions wicd-curses |zenity --progress --auto-close --title="Removing packages" --text="removing packages installed with Anguix..." 
+fi

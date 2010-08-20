@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="animation_speed" mtime="1278093465" type="string">
+		<stringvalue>fast</stringvalue>
+	</entry>
+	<entry name="x_centered" mtime="1278093447" type="bool" value="true"/>
+</gconf>

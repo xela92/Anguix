@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="export-assistant" mtime="1274891747" type="list" ltype="int">
+		<li type="int" value="407"/>
+		<li type="int" value="99"/>
+		<li type="int" value="833"/>
+		<li type="int" value="605"/>
+	</entry>
+	<entry name="export-folder-uri" mtime="1274891730" type="string">
+		<stringvalue>file:///home/alex/Documenti/UpToIMGShack</stringvalue>
+	</entry>
+	<entry name="preferences-editor" mtime="1274891683" type="list" ltype="int">
+		<li type="int" value="594"/>
+		<li type="int" value="233"/>
+		<li type="int" value="533"/>
+		<li type="int" value="311"/>
+	</entry>
+	<entry name="io-providers-order" mtime="1274631881" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>na-gconf</stringvalue>
+		</li>
+	</entry>
+	<entry name="schemes" mtime="1274631881" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>dav|WebDAV files</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>file|Local files</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>ftp|FTP files</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>sftp|SSH files</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>smb|Windows files</stringvalue>
+		</li>
+	</entry>
+	<entry name="export-format" mtime="1274891739" type="string">
+		<stringvalue>GConfEntry</stringvalue>
+	</entry>
+	<entry name="import-mode" mtime="1274631881" type="string">
+		<stringvalue>NoImport</stringvalue>
+	</entry>
+	<entry name="assistant-esc-confirm" mtime="1274631881" type="bool" value="true"/>
+	<entry name="assistant-esc-quit" mtime="1274631881" type="bool" value="true"/>
+	<entry name="iprefs-relabel-profiles" mtime="1274631881" type="bool" value="false"/>
+	<entry name="iprefs-relabel-actions" mtime="1274631881" type="bool" value="false"/>
+	<entry name="iprefs-relabel-menus" mtime="1274631881" type="bool" value="false"/>
+	<entry name="iprefs-add-about-item" mtime="1274631881" type="bool" value="true"/>
+	<entry name="iprefs-create-root-menu" mtime="1274631881" type="bool" value="false"/>
+	<entry name="iprefs-alphabetical-order" mtime="1274631881" type="string">
+		<stringvalue>AscendingOrder</stringvalue>
+	</entry>
+	<entry name="icons-chooser" mtime="1276350322" type="list" ltype="int">
+		<li type="int" value="427"/>
+		<li type="int" value="76"/>
+		<li type="int" value="780"/>
+		<li type="int" value="628"/>
+	</entry>
+	<entry name="icons-path" mtime="1276350322" type="string">
+		<stringvalue>/home/alex/Immagini</stringvalue>
+	</entry>
+	<entry name="icommand-command-chooser" mtime="1274631380" type="list" ltype="int">
+		<li type="int" value="458"/>
+		<li type="int" value="24"/>
+		<li type="int" value="792"/>
+		<li type="int" value="596"/>
+	</entry>
+	<entry name="icommand-folder-uri" mtime="1274631380" type="string">
+		<stringvalue>file:///home/alex</stringvalue>
+	</entry>
+	<entry name="icommand-legend-dialog" mtime="1277120231" type="list" ltype="int">
+		<li type="int" value="0"/>
+		<li type="int" value="0"/>
+		<li type="int" value="200"/>
+		<li type="int" value="200"/>
+	</entry>
+	<entry name="main-window" mtime="1278024700" type="list" ltype="int">
+		<li type="int" value="0"/>
+		<li type="int" value="24"/>
+		<li type="int" value="782"/>
+		<li type="int" value="510"/>
+	</entry>
+	<entry name="main-paned" mtime="1278024700" type="int" value="172"/>
+	<entry name="main-help-toolbar" mtime="1278024332" type="bool" value="true"/>
+	<entry name="main-file-toolbar" mtime="1278024332" type="bool" value="true"/>
+	<entry name="iprefs-level-zero" mtime="1277121641" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>dda87aad-3229-4215-9951-63cca8ba912a</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>e86bd2a8-fe17-4205-835a-4d1e0f9b75e5</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>e054e2ad-4b90-4230-8f2f-283381700507</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>a0324dca-366c-4ee0-b0ac-863b343ab8a4</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>eb58e425-d3a3-4cf5-8d8a-f5315a24aec2</stringvalue>
+		</li>
+	</entry>
+</gconf>

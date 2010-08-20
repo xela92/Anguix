@@ -1,0 +1,6 @@
+#!/bin/bash
+DIR=`zenity --file-selection --directory`
+if [ "$?" = "1" ]; then
+exit 0
+fi
+echo $@ |sed 's/\ /\\ /g' |xargs file-roller --extract-to=$DIR 

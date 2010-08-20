@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="accept-multiple-files" mtime="1276508583" type="bool" value="true"/>
+	<entry name="mimetypes" mtime="1276508583" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>video/mpeg</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>video/x-mpeg</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>video/msvideo</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>video/quicktime</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>video/x-avi</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>  video/x-ms-wmv</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>video/x-msvideo</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/ogg</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-ogg</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-matroska</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>audio/x-mp3</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>audio/x-mpeg</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>audio/mpeg</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>audio/x-wav</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-flac</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>audio/x-flac</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-shockwave-flash</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>audio/mp4</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>video/mp4</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>video/x-flv</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue></stringvalue>
+		</li>
+	</entry>
+	<entry name="parameters" mtime="1276508583" type="string">
+		<stringvalue>%M</stringvalue>
+	</entry>
+	<entry name="path" mtime="1276508583" type="string">
+		<stringvalue>vlc-add-to-playlist</stringvalue>
+	</entry>
+	<entry name="desc-name" mtime="1276508583" type="string">
+		<stringvalue>Default profile</stringvalue>
+	</entry>
+</gconf>

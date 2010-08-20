@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="button_layout" mtime="1278099845" type="string">
+		<stringvalue>menu:minimize,maximize,close</stringvalue>
+	</entry>
+	<entry name="theme" mtime="1278099855" type="string">
+		<stringvalue>Turrican</stringvalue>
+	</entry>
+</gconf>

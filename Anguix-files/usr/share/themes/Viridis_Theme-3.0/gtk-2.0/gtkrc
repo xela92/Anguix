@@ -1,0 +1,426 @@
+
+gtk-button-images = 1
+
+gtk_color_scheme = "fg_color:#ffffff\nbg_color:#181818\nbase_color:#353535\ntext_color:#ffffff\nselected_bg_color:#11A819\nselected_fg_color:#ffffff\ntooltip_bg_color:#9D9D9D\ntooltip_fg_color:#000000"
+
+style "theme-default"
+{
+
+  NautilusIconContainer::normal_alpha                = 50
+  NautilusIconContainer::frame_text                  = 0
+  NautilusIconContainer::dark_info_color             = darker (@bg_color)
+  NautilusIconContainer::light_info_color            = darker (@bg_color)
+  NautilusIconContainer::highlight_alpha             = 70
+
+  PanelToplevel  ::arrow-size                        = 3
+
+  GtkButton      ::child-displacement-x             = 1
+  GtkButton      ::child-displacement-y             = 1
+  GtkButton      ::default_border                   = { 0, 0, 0, 0 }
+  GtkButton      ::default-outside-border           = { 0, 0, 0, 0 }
+  GtkButton      ::displace-focus                   = 0
+  GtkButton      ::image-spacing                    = 0
+  GtkButton      ::inner-border                     = { 1, 1, 0, 0 }
+
+  GtkButtonBox   ::child-internal-pad-x             = 0
+  GtkButtonBox   ::child-internal-pad-y             = 0
+  GtkButtonBox   ::child-min-height                 = 0
+  GtkButtonBox   ::child-min-widht                  = 0
+
+  GtkCheckButton ::indicator_size                   = 14
+
+  GtkComboBox    ::arrow-size                       = 7
+
+  GtkDialog      ::action-area-border               = 5
+  GtkDialog      ::button-spacing                   = 6
+  GtkDialog      ::content-area-border              = 2
+
+  GtkEntry       ::inner-border                     = { 2, 2, 2, 2 }
+
+  GtkExpander    ::expander-size                    = 8
+  GtkExpander    ::expander-spacing                 = 0
+
+  GtkIconView    ::selection-box-alpha              = 0
+  GtkIconView    ::selection-box-color              = @selected_bg_color
+
+  GtkScrollbar   ::has-forward-stepper              = 1
+  GtkScrollbar   ::has-backward-stepper             = 1
+  GtkScrollbar   ::has-secondary-forward-stepper    = 0
+  GtkScrollbar   ::has-secondary-backward-stepper   = 0
+  GtkScrollbar   ::min_slider_length                = 15
+
+  GtkPaned       ::handle_size                      = 6
+
+  GtkRange       ::trough_border                    = 0
+  GtkRange       ::slider_width                     = 15
+  GtkRange       ::stepper_size                     = 15
+
+  GtkMenuBar     ::internal-padding                 = 0
+  GtkMenuBar     ::shadow-type                      = GTK_SHADOW_OUT
+
+  GtkTreeView    ::expander_size                    = 14
+
+  GtkExpander    ::expander_size                    = 16
+
+  GtkScale       ::slider-length                    = 27
+
+  GtkToolbar     ::internal-padding                 = 0
+  GtkToolbar     ::shadow_type                      = GTK_SHADOW_NONE
+  GtkToolbar     ::button-relief                    = GTK_RELIEF_NONE
+
+  GtkMenu        ::horizontal_padding               = 0
+  GtkMenu        ::vertical_padding                 = 0
+
+  GtkFrame       ::shadow_type                      = GTK_SHADOW_NONE
+
+  WnckTasklist   ::fade-overlay-rect                = 50
+  WnckTasklist   ::fade-loop-time                   = 5.0
+  WnckTasklist   ::fade-opacity                     = 0.5
+  
+  GtkMenu::horizontal-offset = -1
+
+  GtkNotebook::tab-curvature = 3
+  GtkNotebook::tab-overlap = 4
+
+  xthickness = 2
+  ythickness = 2
+
+  fg[NORMAL]        = @fg_color 
+  fg[PRELIGHT]      = @fg_color 
+  fg[SELECTED]      = @selected_fg_color  
+  fg[ACTIVE]        = @fg_color 
+  fg[INSENSITIVE]   = darker (@bg_color) 
+
+  bg[NORMAL]        = @bg_color 
+  bg[PRELIGHT]      = @selected_bg_color
+  bg[SELECTED]	    = @selected_bg_color
+  bg[INSENSITIVE]   = @bg_color
+  bg[ACTIVE]        = @base_color
+
+  base[NORMAL]      = @base_color
+  base[PRELIGHT]    = @bg_color
+  base[ACTIVE]      = @selected_bg_color
+  base[SELECTED]    = @selected_bg_color
+  base[INSENSITIVE] = @bg_color
+
+  text[NORMAL]      = @text_color
+  text[PRELIGHT]    = @text_color
+  text[ACTIVE]      = @selected_fg_color
+  text[SELECTED]    = @selected_fg_color
+  text[INSENSITIVE] = darker (@bg_color)
+
+  engine "murrine"  {
+
+        glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
+        roundness = 10 # 0 = squared, 1 = old default, more will increase roundness
+        menustyle = 1 # 0 Normal, 1 = line on left
+        menubarstyle = 0 # 0 = flat, 1 = glassy, 2 = gradient, 3 = striped
+        menuitemstyle = 1 # 0 = flat, 1 = glassy, 2 = striped
+        menubaritemstyle = 1 # 0 = menuitem look, 1 = button look
+        listviewheaderstyle = 2 # 0 = flat, 1 = glassy, 2 = raised
+        listviewstyle = 1 # 0 = nothing, 1 = dotted
+        scrollbarstyle = 1 # Enable or disable circles, stripes, handles
+        animation = TRUE # FALSE = disabled, TRUE = enabled
+        scrollbar_color = "#11A819"
+        hilight_ratio = 1.06
+        contrast = 0.99
+  }
+}
+
+style "theme-menubar"
+	
+{
+ engine "murrine" {
+  roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
+}
+	xthickness 		= 0
+	ythickness 		= 0
+  
+	bg[NORMAL] 		= @bg_color
+	fg[NORMAL]		= @fg_color
+	bg[SELECTED]	  = @base_color
+}
+
+style "panelbg"
+{
+  xthickness = 0
+  ythickness = 0
+  bg[NORMAL]   =  @bg_color
+}
+
+style "theme-button-list" = "theme-default"
+{
+  engine "murrine" {
+  glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
+  roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
+}
+  bg[NORMAL] = @bg_color
+}
+
+style "theme-wide" = "theme-default"
+{
+  engine "murrine" {
+  glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
+  roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
+}
+  xthickness = 1
+  ythickness = 1
+}
+
+style "theme-wider" = "theme-default"
+{
+  engine "murrine" {
+  glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
+  roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
+}
+  xthickness = 3
+  ythickness = 3
+}
+
+style "theme-menu" = "theme-default"
+{
+  engine "murrine" {
+  glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
+  roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
+}
+  xthickness = 0
+  ythickness = 0
+  bg[NORMAL]		= @bg_color #background of menus
+  fg[PRELIGHT]	= @bg_color #?
+  fg[NORMAL]		= @fg_color #text on menus
+}
+
+style "theme-menu-item"
+{
+  engine "murrine" {
+  glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
+  roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
+  hilight_ratio = 1.25
+  contrast = 0.0
+}
+	xthickness = 2
+	ythickness = 4
+	  
+	fg[PRELIGHT]      = @selected_fg_color #prelight text
+	fg[NORMAL]        = @fg_color # menubar text
+
+	text[NORMAL]      = @selected_fg_color
+	text[PRELIGHT]    = @selected_fg_color 
+
+	base[NORMAL]      = @selected_fg_color #fixes gimp
+
+	bg[NORMAL]        = @bg_color #color of separators in menu
+	bg[SELECTED]	  = @selected_bg_color
+	bg[PRELIGHT]	  = @base_color
+}
+
+style "theme-tree" = "theme-default"
+{
+  xthickness = 0
+  ythickness = 0
+  GtkTreeView::odd_row_color = @selected_bg_color
+  GtkTreeView::even_row_color = @bg_color
+}
+
+style "theme-tooltips" = "theme-default"
+{
+  bg[NORMAL] = shade (0.50, @bg_color)
+}
+
+style "theme-progressbar" = "theme-default"
+{
+  engine "murrine" {
+  glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
+}
+  xthickness = 2
+  ythickness = 2
+  fg[NORMAL] = @bg_color
+}
+
+style "theme-button" = "theme-wider"
+{
+  engine "murrine" {
+  glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
+  roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
+  hilight_ratio = 1.00
+  contrast = 1.0
+}
+	bg[NORMAL] = @bg_color
+	bg[ACTIVE] = @selected_bg_color
+	fg[ACTIVE] = @selected_fg_color	
+}
+
+style "theme-toolbar" = "theme-wide"
+{
+  xthickness = 0
+  ythickness = 0
+  bg[NORMAL]       = @ bg_color
+}
+
+style "theme-scrollbars"
+{
+  engine "murrine" {
+  glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
+  roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
+  hilight_ratio = 0.93
+  contrast = 0.0
+}
+  xthickness = 2
+  ythickness = 2
+
+  bg[NORMAL]        = shade (1.05, @bg_color)
+  bg[PRELIGHT]      = shade (1.08, @selected_bg_color)
+}
+
+style "theme-panel-buttons"
+{
+  xthickness = 0
+  ythickness = 0
+}
+
+
+style "theme-notebook" = "theme-wide"
+{
+  engine "murrine" {
+  glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
+  roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
+#}
+# engine "clearlooks" 
+# {
+#   menubarstyle = 1 # 0 = flat, 1 = glassy, 2 = gradient, 3 = striped
+#   animation = TRUE # FALSE = disabled, TRUE = enabled
+#   style             = GUMMY
+}
+  xthickness = 1
+  ythickness = 1
+  bg[NORMAL]        = shade (1.06, @bg_color)
+}
+
+style "metacity-frame"
+{
+  xthickness = 0
+  ythickness = 0
+  bg[NORMAL] = @bg_color
+}
+
+style "theme-range" = "theme-default"
+{
+  engine "murrine" {
+  glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
+  roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
+}
+  xthickness = 2
+  ythickness = 2
+  bg[NORMAL] = @bg_color
+  bg[SELECTED] = @selected_bg_color
+  bg[PRELIGHT] = @selected_bg_color
+}
+
+style "darkilouche-scale" = "theme-button"
+{
+	GtkRange::trough-side-details = 1
+}	
+
+style "theme-dialogbutton" = "theme-default"
+{
+  engine "murrine" {
+  glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
+  roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
+  hilight_ratio = 1.00
+  contrast = 0.0
+}
+  bg[NORMAL] = shade (.95, @bg_color)
+  bg[INSENSITIVE] = shade (1.04, @bg_color)
+  bg[PRELIGHT] = shade (1.08, @selected_bg_color)
+  bg[ACTIVE] = shade (1.18, @selected_bg_color)
+  fg[NORMAL] = @selected_fg_color
+  fg[INSENSITIVE] = @selected_fg_color
+  fg[PRELIGHT] = shade (1.0, @selected_fg_color)
+  fg[ACTIVE] = shade (1.0, @selected_fg_color)
+}
+
+style "panel-menu" = "theme-default"
+{
+  bg[NORMAL] = @bg_color
+}
+
+style "extra-view" {
+  bg[NORMAL] = @bg_color
+} 
+
+style "evolution-hack" = "theme-default"
+{
+  bg[ACTIVE]   = @selected_bg_color
+  bg[SELECTED] = darker (@selected_bg_color)
+  fg[ACTIVE]   = @fg_color
+  fg[SELECTED] = @selected_fg_color
+}
+
+style "fspot-photos" = "theme-default"
+{
+  base[NORMAL] = @base_color
+  fg[NORMAL] = @fg_color
+}
+
+style "bigger-text" {
+  font_name = "9"
+}
+
+style "smaller-text" {
+  font_name = "7"
+}
+
+class "GtkWidget" style "theme-default"
+class "GtkButton" style "theme-button"
+class "GtkCombo"  style "theme-wider"
+class "GtkRange"  style "theme-range"
+class "GtkFrame"  style "theme-wide"
+class "GtkMenu"   style "theme-menu"
+class "GtkEntry"  style "theme-wider"
+class "GtkMenuItem"    style "theme-menu-item"
+class "GtkMenuLine"	style "theme-default"
+class "GtkStatusbar"   style "theme-wide"
+class "GtkNotebook"    style "theme-notebook"
+class "GtkProgressBar" style "theme-progressbar"
+class "GtkCheckButton" style "theme-button"
+class "GtkRadioButton" style "theme-button"
+class "*GtkMenuBar*"  style "theme-menubar"
+class "*Panel*"        style "panelbg"
+widget_class "*MenuItem.*" style "theme-menu-item"
+widget_class "*ToolButton*" style "smaller-text"
+widget_class "*Statusbar*" style "smaller-text"
+widget_class "*MenuBar.*"  style "bigger-text"
+widget "*PanelWidget*" style "bigger-text"
+widget "*PanelApplet*" style "bigger-text"
+
+widget "gtk-tooltips" style "theme-tooltips"
+
+widget_class "*.GtkTreeView.GtkButton" style "theme-button-list"
+widget_class "*.GtkCTree.GtkButton" style "theme-button-list"
+widget_class "*.GtkList.GtkButton" style "theme-button-list"
+widget_class "*.GtkCList.GtkButton" style "theme-button-list"
+
+widget_class "*.GtkFrame.GtkLabel" style "metacity-frame"
+class "MetaFrames" 	  style "metacity-frame"
+class "GtkWindow"      style "metacity-frame"
+
+widget_class "*.GtkNotebook.*.GtkEventBox" style "theme-notebook"
+widget_class "*.GtkNotebook.*.GtkViewport" style "theme-notebook"
+
+widget_class "*Scrollbar*"  style "theme-scrollbars"
+class "*Scrollbar*"         style "theme-scrollbars"
+
+widget_class "*.Gtk*ButtonBox.*Button*" style "theme-dialogbutton"
+
+widget_class "*Panel*GtkButton"	style "theme-panel-buttons"
+widget_class "*Panel*GtkToggleButton"	style "theme-panel-buttons"
+
+widget "*.nautilus-extra-view-widget" style:highest "extra-view"
+
+class "__gtksharp_*_IconView" style "fspot-photos"
+widget_class "*.__gtksharp_*_PhotoView.*.GtkEventBox*" style "fspot-photos"
+
+widget_class "*GtkCTree*" style "evolution-hack"
+widget_class "*GtkList*" style "evolution-hack"
+widget_class "*GtkCList*" style "evolution-hack"
+widget_class "*.ETree.*" style "evolution-hack"

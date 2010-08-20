@@ -1,0 +1,80 @@
+localepurge for Debian
+----------------------
+
+This is just a simple script to recover disk space wasted for unneeded
+Gnome/KDE localizations and man pages. Depending on your installation, it
+is possible to save some 200, 300, or even more megabytes of disk space
+usually dedicated for localization you'll probably never have any use for.
+
+**********************************************************************
+ Please note, that this tool is a hack which is *not* integrated with
+ Debian's package management system and therefore is not for the faint
+ of heart.  Responsibility for its usage and possible breakage of your
+ system therefore lies in the sysadmin's (your) hands. 
+
+ Please definitely do abstain from reporting any such bugs blaming
+ localepurge if you break your system by using it. If you don't know
+ what you are doing and can't handle any resulting breakage on your own
+ then please simply don't use this package.
+
+ This program does interfere with the Debian package management and does
+ provoke strange, but usually harmless, behaviour of programs related
+ with apt/dpkg like dpkg-repack(1), reportbug(1), etc. 
+ 
+ If you need to have any package in its full integrity so that e.g. the
+ formerly mentioned programs work as designed by its author and as
+ expected by you, simply deinstall localepurge temporarily without
+ purging its configuration and reinstall the packages you need in their
+ fully integral state. When you are done with what you needed the
+ integral packages for simply reinstall localepurge again.
+**********************************************************************
+
+localepurge will automagically be invoked upon completion of any apt
+installation run.  It uses the dpkg "Post-Invoke" function to execute
+the script "/usr/sbin/localepurge", which automagically deletes the
+directory of every locale *not* defined in "/etc/locale.nopurge".  You
+have to put in the locale directory names you want to keep from removal
+after each apt installation run in this configuration file.  Unless
+properly configured, localepurge will only display a message and the
+system's locale directories won't be touched at all.
+
+The contents of following directories will be affected from removals:
+
+- /usr/share/doc/kde/HTML
+- /usr/share/gnome/help
+- /usr/share/locale
+- /usr/share/man
+- /usr/share/omf
+
+The localepurge configuration should be configured after installation
+only by using the command
+
+       dpkg-reconfigure localepurge
+
+to add/remove locale entries or toggle verbosity. Since localepurge is
+using the debconf facility for storing its configuration entries it
+shouldn't be configured manually because all manual entries will get
+lost after upgrade, reconfiguration or reinstallation of localepurge.
+
+A Word of CAUTION:
+------------------
+
+ All locale directories containing a subdirectory named LC_MESSAGES
+ which are *not* listed in "/etc/locale.nopurge" will be irreversibly 
+ deleted.  The only way to reinstall any lost locales then is a complete 
+ reinstallation of all the Debian packages containing them. Probably 
+ easiest would be the following command:
+ 
+ apt-get --reinstall install $(dpkg -S LC_MESSAGES | cut -d: -f1 | tr ', ' '\n' | sort -u)
+
+ See "/usr/share/doc/localepurge/reinstall_debs.sh" for a ready made recipe.
+
+I sincerely hope that some day further development of Debian's great 
+package management system will make localepurge fully obsolete.
+
+Administrators of systems with short disk space should have a look
+at both the deborphan and debfoster packages. Especially debfoster can
+definitely work wonders for your scarce disk space!
+
+Paul Seelig <pseelig@debian.org>, Tue, 29 May 2001 17:53:06 +0200
+Gustavo Noronha Silva <kov@debian.org>, Thu, 27 Dec 2001 19:29:48 +0200 

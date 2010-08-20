@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="mimetypes" mtime="1277121641" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>text/plain</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>  application/msword</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>  application/rtf</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/msword</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/rtf</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.ms-works</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.oasis.opendocument.text</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.oasis.opendocument.text-master</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.oasis.opendocument.text-template</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.stardivision.writer</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.stardivision.writer-global</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.sun.xml.writer</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.sun.xml.writer.global</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.sun.xml.writer.template</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.wordperfect</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/wordperfect</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/x-extension-txt</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/x-t602</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> text/plain</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> text/rtf</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.ms-word.document.macroEnabled.12</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.openxmlformats-officedocument.wordprocessingml.document</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.ms-word.template.macroEnabled.12</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue> application/vnd.openxmlformats-officedocument.wordprocessingml.template</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue></stringvalue>
+		</li>
+	</entry>
+	<entry name="parameters" mtime="1277121641" type="string">
+		<stringvalue>%u</stringvalue>
+	</entry>
+	<entry name="path" mtime="1277121641" type="string">
+		<stringvalue>send_to_gdoc</stringvalue>
+	</entry>
+	<entry name="desc-name" mtime="1277121641" type="string">
+		<stringvalue>Default profile</stringvalue>
+	</entry>
+</gconf>

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="writable" mtime="1274631881" type="bool" value="true"/>
+	<entry name="read-at-startup" mtime="1274631881" type="bool" value="true"/>
+</gconf>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="mimetypes" mtime="1276695816" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>audio/x-mp3</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>audio/x-mpeg</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>audio/mpeg</stringvalue>
+		</li>
+	</entry>
+	<entry name="parameters" mtime="1276695816" type="string">
+		<stringvalue>%u</stringvalue>
+	</entry>
+	<entry name="path" mtime="1276695816" type="string">
+		<stringvalue>mp3tagedit</stringvalue>
+	</entry>
+	<entry name="desc-name" mtime="1276695816" type="string">
+		<stringvalue>Default profile</stringvalue>
+	</entry>
+</gconf>

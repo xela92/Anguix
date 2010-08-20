@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="mimetypes" mtime="1276508460" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>image/bmp</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>image/gif</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>image/x-sgi</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>image/jpeg</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>image/jpg</stringvalue>
+		</li>
+	</entry>
+	<entry name="parameters" mtime="1276508460" type="string">
+		<stringvalue>%u</stringvalue>
+	</entry>
+	<entry name="path" mtime="1276508460" type="string">
+		<stringvalue>upload2ImageShack</stringvalue>
+	</entry>
+	<entry name="desc-name" mtime="1276508460" type="string">
+		<stringvalue>Upload To ImageShack</stringvalue>
+	</entry>
+</gconf>

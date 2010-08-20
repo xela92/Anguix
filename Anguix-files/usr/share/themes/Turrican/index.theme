@@ -1,0 +1,8 @@
+[X-GNOME-Metatheme]
+Name=Turrican
+Type=X-GNOME-Metatheme
+Comment=
+Encoding=UTF-8
+GtkTheme=Turrican
+MetacityTheme=Turrican
+IconTheme=ubuntu-mono-dark

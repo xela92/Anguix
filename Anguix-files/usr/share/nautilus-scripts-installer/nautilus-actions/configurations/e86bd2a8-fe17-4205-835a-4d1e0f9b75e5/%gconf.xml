@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="toolbar-label" mtime="1276695816" type="string">
+		<stringvalue>Modifica Informazioni MP3</stringvalue>
+	</entry>
+	<entry name="icon" mtime="1276695816" type="string">
+		<stringvalue>/home/alex/Immagini/id3tag_icon.jpg</stringvalue>
+	</entry>
+	<entry name="tooltip" mtime="1276695816" type="string">
+		<stringvalue>ID3TAG Editor</stringvalue>
+	</entry>
+	<entry name="label" mtime="1276695816" type="string">
+		<stringvalue>Modifica Informazioni MP3</stringvalue>
+	</entry>
+	<entry name="items" mtime="1276695816" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>profile-zero</stringvalue>
+		</li>
+	</entry>
+	<entry name="type" mtime="1276695816" type="string">
+		<stringvalue>Action</stringvalue>
+	</entry>
+</gconf>

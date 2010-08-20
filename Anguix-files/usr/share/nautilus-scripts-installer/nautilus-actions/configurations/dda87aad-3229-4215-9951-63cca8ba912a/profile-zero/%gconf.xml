@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="accept-multiple-files" mtime="1277120215" type="bool" value="true"/>
+	<entry name="mimetypes" mtime="1277120215" type="list" ltype="string">
+		<li type="string">
+			<stringvalue>application/x-7z-compressed</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-7z-compressed-tar</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-ace</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-alz</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-ar</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-arj</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-bzip</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-bzip-compressed-tar</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-bzip1</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-bzip1-compressed-tar</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-cabinet</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-cbr</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-cbz</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-cd-image</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-compress</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-compressed-tar</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-cpio</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-deb</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-ear</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-ms-dos-executable</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-gtar</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-gzip</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-gzpostscript</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-java-archive</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-lha</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-lhz</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-lzip</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-lzip-compressed-tar</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-lzma</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-lzma-compressed-tar</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-lzop</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-lzop-compressed-tar</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-rar</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-rar-compressed</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-rpm</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-rzip</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-tar</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-tarz</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-stuffit</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-war</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-xz</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-xz-compressed-tar</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-zip</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-zip-compressed</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/x-zoo</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue>application/zip</stringvalue>
+		</li>
+		<li type="string">
+			<stringvalue></stringvalue>
+		</li>
+	</entry>
+	<entry name="parameters" mtime="1277120215" type="string">
+		<stringvalue>&quot;%u&quot;</stringvalue>
+	</entry>
+	<entry name="path" mtime="1277120215" type="string">
+		<stringvalue>extract_to_folder</stringvalue>
+	</entry>
+	<entry name="desc-name" mtime="1277120215" type="string">
+		<stringvalue>Default profile</stringvalue>
+	</entry>
+</gconf>
