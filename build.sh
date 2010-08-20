@@ -9,6 +9,7 @@ fi
 cd $ANGUIX
 cp Anguix-installer_nobinary Anguix-installer
 cat Anguix-files.tar.gz >> Anguix-installer
+chmod +x Anguix-installer
 rm Anguix-files.tar.gz
 echo "done."
 exit 0
