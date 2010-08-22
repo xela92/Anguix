@@ -8,7 +8,7 @@ function preinst ( )
 #Remove Packages - in ordine, programmi, guide, fonts e pacchetti lingua
 #setta le variabili che andranno nel conf di localepurge, così che localepurge possa essere configurato senza la necessità di utilizzare il suo configuratore, ingestibile durante l'installazione.
 #S_LOCALE=it; M_LOCALE=it_IT; L_LOCALE=italian; UTF8_LOCALE=it_IT.UTF-8
-UTF8_LOCALE=`echo $LANG |sed 's/.utf8/.UTF-8/g'`
+UTF8_LOCALE=`echo $LANG |sed 's/\.utf8/\.UTF-8/g'`
 S_LOCALE=`for i in 1,2; do echo $LANG |cut -c $i; done`
 M_LOCALE=`echo $LANG |cut -d '.' -f1`
 L_LOCALE=`cat /etc/locale.alias |grep $M_LOCALE |sed 's/\ .*//g'`
@@ -82,7 +82,7 @@ cat /etc/apt/sources.list |sed 's/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ luci
 mv /tmp/sources.list.tmp /etc/apt/sources.list
 #cambio nome distro
 cp /etc/lsb-release /etc/lsb-release.ubuntu
-cat /etc/lsb-release |sed 's/[u-U]buntu/Anguix/g' |sed 's/lucid/Viridis/g' |sed 's/10.04.1 LTS/0.1alpha5/g' | sed 's/10.04/0.1alpha5/g' > /tmp/lsb-release.tmp
+cat /etc/lsb-release |sed 's/[u,U]buntu/Anguix/g' |sed 's/lucid/Viridis/g' |sed 's/10.04.1\ LTS/0.1alpha5/g' | sed 's/10.04/0.1alpha5/g' > /tmp/lsb-release.tmp
 #todo: mettere direttamente l'lsb-release nel tar.gz
 mv /tmp/lsb-release.tmp /etc/lsb-release
 
@@ -98,7 +98,7 @@ function inst ( )
 {
 LINE=`awk '/^END_OF_FILE/ {print NR + 1; exit 0; }' $0`
 tail -n+$LINE $0 > /tmp/Anguix-files.tar.gz
-gunzip -q < /tmp/Anguix-files.tar.gz | tar -C / xvf - 
+gunzip -q < /tmp/Anguix-files.tar.gz | tar -C / xvf - >/etc/anguix-files
 }
 function postinst ( )
 {
@@ -148,7 +148,7 @@ mv /usr/share/gconf/defaults/16_ubuntu-wallpapers.backup /usr/share/gconf/defaul
 }
 function removal ( )
 {
-echo "caramelle"
+cat /etc/anguix-files |xargs rm
     #qui dentro ci sta rm in tutta la sua bellezza, con i dati del tar della funzione inst
 }
 function postrm ( )
@@ -163,6 +163,7 @@ apt-get install ubuntu-desktop
 fi
 rm /etc/udesk.conf
 rm /etc/anguix_lang.conf
+apt-get -y install evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected
 }
 case $1 in
         install) echo "running preinst"
