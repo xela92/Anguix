@@ -106,30 +106,18 @@ gunzip -q < /tmp/Anguix-files.tar.gz | tar xvf - >/etc/anguix-files
 function postinst ( )
 {
 #NON TOCCATELO, questo lo gestisco io.
-# 1
-cp /usr/share/gconf/defaults/05_panel-default-setup.entries /usr/share/gconf/defaults/05_panel-default-setup.entries.backup
-cat /usr/share/gconf/defaults/05_panel-default-setup.entries |sed 's/<string>yelp_launcher<\/string>//g' |sed 's/<string>indicator_applet<\/string>//g'  > /tmp/05_panel-default-setup.entries.tmp
-mv /tmp/05_panel-default-setup.entries.tmp /usr/share/gconf/defaults/05_panel-default-setup.entries
-
-# 2
-cp /usr/share/gconf/defaults/10_metacity-common /usr/share/gconf/defaults/10_metacity-common.backup
-echo "/apps/panel/default_setup/toplevels/bottom_panel/background/opacity 34327
-/apps/panel/default_setup/toplevels/top_panel/background/opacity 49913
-/apps/panel/default_setup/toplevels/bottom_panel/background/type color
-/apps/panel/default_setup/toplevels/top_panel/background/type color
-/apps/panel/default_setup/toplevels/top_panel/background/color #181818
-/apps/panel/default_setup/toplevels/bottom_panel/background/color #181818" >> /usr/share/gconf/defaults/10_metacity-common
- 
-# 3
- cp /usr/share/gconf/defaults/16_ubuntu-artwork /usr/share/gconf/defaults/16_ubuntu-artwork.backup
-cat /usr/share/gconf/defaults/16_ubuntu-artwork | sed 's/\/desktop\/gnome\/interface\/gtk_theme.*/\/desktop\/gnome\/interface\/gtk_theme\ \ \ \ \ \ Viridis_Theme-3.0/g' |sed 's/\/desktop\/gnome\/interface\/gtk_color_scheme.*/\/desktop\/gnome\/interface\/gtk_color_scheme\ fg_color:#28d69a6c5bb1,bg_color:#181818181818,text_color:#00000448002e,base_color:#c571f8fee6c6,selected_fg_color:#2e28a0f21775,selected_bg_color:#3da1f3753e1e,tooltip_fg_color:#000000000000,tooltip_bg_color:#9d9d9d9d9d9d6c5/g' |sed 's/\/apps\/metacity\/general\/theme.*/\/apps\/metacity\/general\/theme\ \ \ \ \ \ \ \ Turrican/g' > /tmp/16_ubuntu-artwork.tmp
-mv /tmp/16_ubuntu-artwork.tmp /usr/share/gconf/defaults/16_ubuntu-artwork
-
-# 4
-cp /usr/share/gconf/defaults/16_ubuntu-wallpapers /usr/share/gconf/defaults/16_ubuntu-wallpapers.backup 
-cat /usr/share/gconf/defaults/16_ubuntu-wallpapers |sed 's/\/desktop\/gnome\/background\/picture_filename.*/\/desktop\/gnome\/background\/picture_filename\ "\/usr\/share\/backgrounds\/moreliaviridis\.png"/g' > /tmp/16_ubuntu-wallpapers.tmp
-mv /tmp/16_ubuntu-wallpapers.tmp /usr/share/gconf/defaults/16_ubuntu-wallpapers
-
+# 1 - Pannelli
+#gconftool-2 --type string --set /apps/panel/toplevels/bottom_panel_screen0/background/type "color"
+#gconftool-2 --type int --set /apps/panel/toplevels/bottom_panel_screen0/background/opacity 49931
+#gconftool-2 --type string --set /apps/panel/toplevels/top_panel_screen0/background/type "color"
+#gconftool-2 --type int --set /apps/panel/toplevels/top_panel_screen0/background/opacity 39327
+# 2 - Metacity
+#gconftool-2 --type string --set /apps/metacity/general/theme "Turrican"
+#gconftool-2 --type string --set /desktop/gnome/interface/gtk_color_scheme "fg_color:#28d69a6c5bb1 bg_color:#181818181818 text_color:#00000448002e base_color:#c571f8fee6c6 selected_fg_color:#2e28a0f21775 selected_bg_color:#3da1f3753e1e tooltip_fg_color:#000000000000 tooltip_bg_color:#9d9d9d9d9d9d"
+# 3 - Temi
+#gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme "Viridis_Theme-3.0"
+#gconftool-2 --type string --set /desktop/gnome/interface/icon_theme "ubuntu-mono-dark"
+#gconftool-2 --type string --set /desktop/gnome/background/picture_filename "/usr/share/backgrounds/moreliaviridis.png"
 nautilus-scripts-installer
 cat /etc/anguix_lang.conf |grep S_LOCALE |sed 's/S_LOCALE:\ //g' >> /etc/locale.nopurge
 cat /etc/anguix_lang.conf |grep M_LOCALE |sed 's/M_LOCALE:\ //g' >> /etc/locale.nopurge
@@ -139,14 +127,6 @@ function prerm ( )
 {
 mv /etc/apt/sources.list.backup /etc/apt/sources.list
 mv /etc/lsb-release.ubuntu /etc/lsb-release 
-# 1
-mv /usr/share/gconf/defaults/05_panel-default-setup.entries.backup /usr/share/gconf/defaults/05_panel-default-setup.entries
-# 2
-mv /usr/share/gconf/defaults/10_metacity-common.backup /usr/share/gconf/defaults/10_metacity-common
-# 3
-mv /usr/share/gconf/defaults/16_ubuntu-artwork.backup /usr/share/gconf/defaults/16_ubuntu-artwork
-# 4
-mv /usr/share/gconf/defaults/16_ubuntu-wallpapers.backup /usr/share/gconf/defaults/16_ubuntu-wallpapers  
 }
 function removal ( )
 {
