@@ -77,8 +77,10 @@ exec /sbin/getty -8 38400 tty6
 # Disattivazione di alcuni repo ufficiali (i repo ppa verranno installati direttamente col tar.gz)
 #creo il backup prima
 cp /etc/apt/sources.list /etc/apt/sources.list.backup
-#commento i repo e decommento multiverse e universe 
-cat /etc/apt/sources.list |sed 's/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ main\ restricted/#deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ main\ restricted/g' |sed 's/deb\ http:\/\/security.ubuntu.com\/ubuntu\ lucid-security\ main\ restricted/#deb\ http:\/\/security.ubuntu.com\/ubuntu\ lucid-security\ main\ restricted/g' |sed 's/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid-updates\ main\ restricted/#deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid-updates\ main\ restricted/g' |sed 's/#\ deb http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ universe/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid universe/g' |sed 's/#\ deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ multiverse/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ multiverse/g'> /tmp/sources.list.tmp
+#commento i repo --> disattivata, crea broken packages
+#cat /etc/apt/sources.list |sed 's/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ main\ restricted/#deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ main\ restricted/g' |sed 's/deb\ http:\/\/security.ubuntu.com\/ubuntu\ lucid-security\ main\ restricted/#deb\ http:\/\/security.ubuntu.com\/ubuntu\ lucid-security\ main\ restricted/g' |sed 's/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid-updates\ main\ restricted/#deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid-updates\ main\ restricted/g' 
+#decommento multiverse e universe
+cat /etc/apt/sources.list |sed 's/#\ deb http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ universe/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid universe/g' |sed 's/#\ deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ multiverse/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ multiverse/g'> /tmp/sources.list.tmp
 mv /tmp/sources.list.tmp /etc/apt/sources.list
 #cambio nome distro
 cp /etc/lsb-release /etc/lsb-release.ubuntu
