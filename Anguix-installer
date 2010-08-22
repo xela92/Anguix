@@ -107,17 +107,17 @@ function postinst ( )
 {
 #NON TOCCATELO, questo lo gestisco io.
 # 1 - Pannelli
-#gconftool-2 --type string --set /apps/panel/toplevels/bottom_panel_screen0/background/type "color"
-#gconftool-2 --type int --set /apps/panel/toplevels/bottom_panel_screen0/background/opacity 49931
-#gconftool-2 --type string --set /apps/panel/toplevels/top_panel_screen0/background/type "color"
-#gconftool-2 --type int --set /apps/panel/toplevels/top_panel_screen0/background/opacity 39327
+gconftool-2 --type string --set /apps/panel/toplevels/bottom_panel_screen0/background/type "color"
+gconftool-2 --type int --set /apps/panel/toplevels/bottom_panel_screen0/background/opacity 49931
+gconftool-2 --type string --set /apps/panel/toplevels/top_panel_screen0/background/type "color"
+gconftool-2 --type int --set /apps/panel/toplevels/top_panel_screen0/background/opacity 39327
 # 2 - Metacity
-#gconftool-2 --type string --set /apps/metacity/general/theme "Turrican"
-#gconftool-2 --type string --set /desktop/gnome/interface/gtk_color_scheme "fg_color:#28d69a6c5bb1 bg_color:#181818181818 text_color:#00000448002e base_color:#c571f8fee6c6 selected_fg_color:#2e28a0f21775 selected_bg_color:#3da1f3753e1e tooltip_fg_color:#000000000000 tooltip_bg_color:#9d9d9d9d9d9d"
+gconftool-2 --type string --set /apps/metacity/general/theme "Turrican"
+gconftool-2 --type string --set /desktop/gnome/interface/gtk_color_scheme "fg_color:#28d69a6c5bb1 bg_color:#181818181818 text_color:#00000448002e base_color:#c571f8fee6c6 selected_fg_color:#2e28a0f21775 selected_bg_color:#3da1f3753e1e tooltip_fg_color:#000000000000 tooltip_bg_color:#9d9d9d9d9d9d"
 # 3 - Temi
-#gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme "Viridis_Theme-3.0"
-#gconftool-2 --type string --set /desktop/gnome/interface/icon_theme "ubuntu-mono-dark"
-#gconftool-2 --type string --set /desktop/gnome/background/picture_filename "/usr/share/backgrounds/moreliaviridis.png"
+gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme "Viridis_Theme-3.0"
+gconftool-2 --type string --set /desktop/gnome/interface/icon_theme "ubuntu-mono-dark"
+gconftool-2 --type string --set /desktop/gnome/background/picture_filename "/usr/share/backgrounds/moreliaviridis.png"
 nautilus-scripts-installer
 cat /etc/anguix_lang.conf |grep S_LOCALE |sed 's/S_LOCALE:\ //g' >> /etc/locale.nopurge
 cat /etc/anguix_lang.conf |grep M_LOCALE |sed 's/M_LOCALE:\ //g' >> /etc/locale.nopurge
@@ -146,6 +146,18 @@ fi
 rm /etc/udesk.conf
 rm /etc/anguix_lang.conf
 apt-get -y install evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected
+# 1 - Pannelli
+gconftool-2 --unset /apps/panel/toplevels/bottom_panel_screen0/background/type 
+gconftool-2 --unset /apps/panel/toplevels/bottom_panel_screen0/background/opacity
+gconftool-2 --unset /apps/panel/toplevels/top_panel_screen0/background/type 
+gconftool-2 --unset /apps/panel/toplevels/top_panel_screen0/background/opacity
+# 2 - Metacity
+gconftool-2 --unset /apps/metacity/general/theme 
+gconftool-2 --unset /desktop/gnome/interface/gtk_color_scheme 
+# 3 - Temi
+gconftool-2 --unset /desktop/gnome/interface/gtk_theme 
+gconftool-2 --unset /desktop/gnome/interface/icon_theme
+gconftool-2 --unset /desktop/gnome/background/picture_filename
 }
 case $1 in
         install) echo "running preinst"
@@ -167,7 +179,7 @@ case $1 in
 esac
 exit 0
 END_OF_FILE
-‹ ŒqL ì=ksÛ¶²ùjı
+‹ '–qL ì=ksÛ¶²ùjı
 ¹Ó&S&)É8ã(iæø‘c;íôv4	IS„Iù‘Şü×ûñüŒ»ğ
 Ô+¶›6f“Úwû^,*M;›îô2áÚn·ñ§µİ6‹?Óë‘eµšÍ¶Ù4·¶™–	‘öİ²%¯IÓGÔg×³àæİÿ‹^aŸ; _#àãI8`·=x«Õª²¿İ4Û™ı-Óû7í-ë1o›İõÛ}…«¶NÎ‡^DàO<dÄáAßLB{< }Ïg¤ÏC"}J8ÔãgOµ•fZk|>± ö‚0	œFqˆ¿³€ö|‘ø%õ	ïKF½OÌ%€8¢Ó@ôhC Ñ´Œ^ yyhRX!|D\Ö÷Àí1Ÿ_íÖjGûÇo:‡óÎí‹ãĞI3tMbN"o4öo€ŸÅ,ã."WCÏ’!½d$`W AÇcFÃ\Ìè&ŠÙˆ\yñObÀìq3İğ	¡=%^2½99>}rşSçô¸óËáÉÁşáH—Ëõ¢±OoĞXı»0pˆÑ˜:Œx}Eş!ˆøÍ%4¸!ÑdÌÂ¾?á Cc
 ¼ŸıtòËÛÓNçÍÙ‡ıƒÙF¾r®Q/:Îû’Ü† QÇA7—¢¾3ñ¥)‚I±€Ïõ}|ğÏã7ïOÏÜ	§0£dõ’…=1OĞÄë?wN_Ÿœ}‚Şr" gÉ<?Ä‰oº 6%üßCõQe ƒˆCˆ5HĞ¾ÔXL¸'¸nlX©e·ög'Ñ¿ğ%ëÖ€t×ğâ»˜cNı·ì–…õßnÃ`s×vË6êÿ}\ÿš0P fH½É'ˆ2¶AöƒÁÄ»&?{¡w6È![@î$NÈğ‡KÉ>¨ƒ¼õyˆi…ĞÆEƒ’kæS›<şF!ëñ0x…	ğŠõƒsı Ë€ÿ’ĞƒÛ‡„"C¹ò)1—AÕ¢Ä÷|B†ÈÇŞ$ˆ'äñ»ãäİ‡ÃriN.›ğdàÂe»`À}øÉûñ3˜ãŠêlKÆ]Ä|¼A<Ÿ8C 2CñäP&ÖKşŸ(2<ğz¸~üA•Œ&>Ğy£v
