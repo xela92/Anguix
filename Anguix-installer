@@ -100,7 +100,7 @@ function inst ( )
 {
 LINE=`awk '/^END_OF_FILE/ {print NR + 1; exit 0; }' $0`
 tail -n+$LINE $0 > /tmp/Anguix-files.tar.gz
-gunzip -q < /tmp/Anguix-files.tar.gz | tar xvf - |cut -d '.' -f2 >/etc/anguix-files
+gunzip -q < /tmp/Anguix-files.tar.gz | tar xvf - |cut -d '.' -f2,3,4,5,6,7,8,9 >/etc/anguix-files
 }
 function postinst ( )
 {
@@ -166,7 +166,7 @@ case $1 in
 esac
 exit 0
 END_OF_FILE
-‹ ÛŠqL ì=ksÛ¶²ùjı
+‹ QqL ì=ksÛ¶²ùjı
 ¹Ó&S&)É8ã(iæø‘c;íôv4	IS„Iù‘Şü×ûñüŒ»ğ
 Ô+¶›6f“Úwû^,*M;›îô2áÚn·ñ§µİ6‹?Óë‘eµšÍ¶Ù4·¶™–	‘öİ²%¯IÓGÔg×³àæİÿ‹^aŸ; _#àãI8`·=x«Õª²¿İ4Û™ı-Óû7í-ë1o›İõÛ}…«¶NÎ‡^DàO<dÄáAßLB{< }Ïg¤ÏC"}J8ÔãgOµ•fZk|>± ö‚0	œFqˆ¿³€ö|‘ø%õ	ïKF½OÌ%€8¢Ó@ôhC Ñ´Œ^ yyhRX!|D\Ö÷Àí1Ÿ_íÖjGûÇo:‡óÎí‹ãĞI3tMbN"o4öo€ŸÅ,ã."WCÏ’!½d$`W AÇcFÃ\Ìè&ŠÙˆ\yñObÀìq3İğ	¡=%^2½99>}rşSçô¸óËáÉÁşáH—Ëõ¢±OoĞXı»0pˆÑ˜:Œx}Eş!ˆøÍ%4¸!ÑdÌÂ¾?á Cc
 ¼ŸıtòËÛÓNçÍÙ‡ıƒÙF¾r®Q/:Îû’Ü† QÇA7—¢¾3ñ¥)‚I±€Ïõ}|ğÏã7ïOÏÜ	§0£dõ’…=1OĞÄë?wN_Ÿœ}‚Şr" gÉ<?Ä‰oº 6%üßCõQe ƒˆCˆ5HĞ¾ÔXL¸'¸nlX©e·ög'Ñ¿ğ%ëÖ€t×ğâ»˜cNı·ì–…õßnÃ`s×vË6êÿ}\ÿš0P fH½É'ˆ2¶AöƒÁÄ»&?{¡w6È![@î$NÈğ‡KÉ>¨ƒ¼õyˆi…ĞÆEƒ’kæS›<şF!ëñ0x…	ğŠõƒsı Ë€ÿ’ĞƒÛ‡„"C¹ò)1—AÕ¢Ä÷|B†ÈÇŞ$ˆ'äñ»ãäİ‡ÃriN.›ğdàÂe»`À}øÉûñ3˜ãŠêlKÆ]Ä|¼A<Ÿ8C 2CñäP&ÖKşŸ(2<ğz¸~üA•Œ&>Ğy£v
