@@ -106,7 +106,7 @@ function postinst ( )
 #NON TOCCATELO, questo lo gestisco io.
 # 1
 cp /usr/share/gconf/defaults/05_panel-default-setup.entries /usr/share/gconf/defaults/05_panel-default-setup.entries.backup
-cat /usr/share/gconf/defaults/05_panel-default-setup.entries |sed 's/<string>yelp_launcher<\/string>//g' |sed 's/<string>indicator_applet</string>//g'  > /tmp/05_panel-default-setup.entries.tmp
+cat /usr/share/gconf/defaults/05_panel-default-setup.entries |sed 's/<string>yelp_launcher<\/string>//g' |sed 's/<string>indicator_applet<\/string>//g'  > /tmp/05_panel-default-setup.entries.tmp
 mv /tmp/05_panel-default-setup.entries.tmp /usr/share/gconf/defaults/05_panel-default-setup.entries
 
 # 2
@@ -125,7 +125,7 @@ mv /tmp/16_ubuntu-artwork.tmp /usr/share/gconf/defaults/16_ubuntu-artwork
 
 # 4
 cp /usr/share/gconf/defaults/16_ubuntu-wallpapers /usr/share/gconf/defaults/16_ubuntu-wallpapers.backup 
-cat /usr/share/gconf/defaults/16_ubuntu-wallpapers |sed 's/\/desktop\/gnome\/background\/picture_filename.*/\/desktop\/gnome\/background\/picture_filename\ "/usr/share/backgrounds/moreliaviridis.png"/g' > /tmp/16_ubuntu-wallpapers.tmp
+cat /usr/share/gconf/defaults/16_ubuntu-wallpapers |sed 's/\/desktop\/gnome\/background\/picture_filename.*/\/desktop\/gnome\/background\/picture_filename\ "\/usr\/share\/backgrounds\/moreliaviridis\.png"/g' > /tmp/16_ubuntu-wallpapers.tmp
 mv /tmp/16_ubuntu-wallpapers.tmp /usr/share/gconf/defaults/16_ubuntu-wallpapers
 
 nautilus-scripts-installer
