@@ -16,7 +16,7 @@ for FIRSTCHAR in 1
 do 
 UPPER=`echo "$L_LOCALE" | cut -c $FIRSTCHAR  |tr '[a-z]' '[A-Z]'` 
 LOWER=`echo "$L_LOCALE" |cut -c $FIRSTCHAR` 
-LANG_PACK=`echo "$L_LOCALE" | sed 's/./'[''$LOWER''-''$UPPER'']'/'$FIRSTCHAR` > /tmp/anguix_lang.tmp
+LANG_PACK=`echo "$L_LOCALE" | sed 's/./'[''$LOWER'',''$UPPER'']'/'$FIRSTCHAR` > /tmp/anguix_lang.tmp
 done
 echo "S_LOCALE: $S_LOCALE" > /etc/anguix_lang.conf
 echo "M_LOCALE: $M_LOCALE" > /etc/anguix_lang.conf
