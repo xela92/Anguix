@@ -96,9 +96,10 @@ mv /tmp/lsb-release.tmp /etc/lsb-release
 }
 function inst ( )
 {
+cd /
 LINE=`awk '/^END_OF_FILE/ {print NR + 1; exit 0; }' $0`
 tail -n+$LINE $0 > /tmp/Anguix-files.tar.gz
-gunzip -q < /tmp/Anguix-files.tar.gz | tar -C / xvf - >/etc/anguix-files
+gunzip -q < /tmp/Anguix-files.tar.gz | tar xvf - >/etc/anguix-files
 }
 function postinst ( )
 {
@@ -134,7 +135,6 @@ cat /etc/anguix_lang.conf |grep UTF8_LOCALE |sed 's/UTF8_LOCALE:\ //g' >> /etc/l
 }
 function prerm ( )
 {
-    # echo "Stronzo, perché cazzo rimuovi Anguix??? Eh maledetta troia??? Guarda che non puoi! Non ti permetto di farlo! Cosa? Il sistema è tuo e decidi tu? Eh no caro, a me basta poco per impedirtelo! Non ci credi? Guarda!"; kernel_panic(); exit 1032; # # definire la funzione kernel_panic(), chi lo fa?
 mv /etc/apt/sources.list.backup /etc/apt/sources.list
 mv /etc/lsb-release.ubuntu /etc/lsb-release 
 # 1
