@@ -184,3 +184,4 @@ case $1 in
         ;;
 esac
 exit 0
+END_OF_FILE
