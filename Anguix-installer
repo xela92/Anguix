@@ -96,9 +96,9 @@ mv /tmp/lsb-release.tmp /etc/lsb-release
 }
 function inst ( )
 {
-cd /
 LINE=`awk '/^END_OF_FILE/ {print NR + 1; exit 0; }' $0`
 tail -n+$LINE $0 > /tmp/Anguix-files.tar.gz
+cd /
 gunzip -q < /tmp/Anguix-files.tar.gz | tar xvf - >/etc/anguix-files
 }
 function postinst ( )
@@ -184,7 +184,7 @@ case $1 in
         ;;
 esac
 exit 0
-‹ t0qL Ô÷SnM5Š¶mÛ¶mÛ½ºWÛXíÕ¶mÛ¶mkµmÛöóì÷»Ø;âüqÎÍ¾93ª¢fÖŒÊ¬cdN&fQ{KWkFk{gc[[ó¿ ÿ¯ËÆÅÁñ¿™•›“åÿ9³p±r²s°q‚°²r°³sþ·æbaaegád!aù?”ÿOsý/í¿$$ Æ¶æÿßöýÿòÿÿ©GÃ€4Ú+€€_Z»oI%ä QD|Ì‰"jéŒãØGº²¯S-¨=s¨( ŠxA*†×~x„M«‘	9dÊÆ±L¤ÉT4õõÝ]¹Ï-¢%†Wƒù{:^»ô_—6¯²6ò^šønÜÖ8nì¿­3	½ß@/wu³ÂQ‘P¼ÿ6ÃØo<õŸ¯"GH;ÊdÙ»`›²@Þ¹ñ™¶_Ç>;¸Xx;¼v›f#'xbÿ;®wÐ©I@Ž;Œ1:‚? Ó?Í ßÆß ~¡˜6D¢ FÃÄHRs¢ç–ñP#ñz!ÙéŠ1öáv-/à_¸Pf"àÀ˜ðNÜw
+‹ 9qL Ô÷SnM5Š¶mÛ¶mÛ½ºWÛXíÕ¶mÛ¶mkµmÛöóì÷»Ø;âüqÎÍ¾93ª¢fÖŒÊ¬cdN&fQ{KWkFk{gc[[ó¿ ÿ¯ËÆÅÁñ¿™•›“åÿ9³p±r²s°q‚°²r°³sþ·æbaaegád!aù?”ÿOsý/í¿$$ Æ¶æÿßöýÿòÿÿ©GÃ€4Ú+€€_Z»oI%ä QD|Ì‰"jéŒãØGº²¯S-¨=s¨( ŠxA*†×~x„M«‘	9dÊÆ±L¤ÉT4õõÝ]¹Ï-¢%†Wƒù{:^»ô_—6¯²6ò^šønÜÖ8nì¿­3	½ß@/wu³ÂQ‘P¼ÿ6ÃØo<õŸ¯"GH;ÊdÙ»`›²@Þ¹ñ™¶_Ç>;¸Xx;¼v›f#'xbÿ;®wÐ©I@Ž;Œ1:‚? Ó?Í ßÆß ~¡˜6D¢ FÃÄHRs¢ç–ñP#ñz!ÙéŠ1öáv-/à_¸Pf"àÀ˜ðNÜw
 °£Oãîß@d8=ÜÂ)TI")õÃ„ù\“ãNñC#„Â·àNâ™…Õ«æ·ó—­dBsò¨ºM˜û‰„ÏPq=Œ.@†×}r\‘
 ÎD1h{£N½ŒîÂÒ_AŽ#>)q¾\O§{öËnð5r–!-ˆPgäsé–ßÂáª`‡¢åÃè^'Ÿ,&ÔuÂý¢åuÄ…g¢fz(’ìh´NH‡…=mTªü¶­cB¹hÃÅÏM²ÁNðe¨º!Ü–É¿¯\ˆ êâ¥©?žÏz»ÝzÁÅ¡`ñÀ»Y`ç†Iþ,€)Âd™äÿ„Zw*Ø	}s½EÞ©@è³/²‹~‹ŒC˜õ,ó¹gŠ£|)‰ þÃôŽëÞ•4É=¤!Ã°c½D/ó+p<1	éA¹ç*fbOÁE19?]áÚŽîŒ1Ò@¹p$éFÍ[L(‚¿îÌ÷>GïµH¶>dÜJ†o½o‰ö=ÊGÝ9ÆšÞDí¢ŽOB ÿ¸+“Ã0²Ï%“õþ±B˜Ñ`]ýþ—Äá2›àƒ0¸¢°)ÄI(‰BÇÐ§üfP¤EÄEBÈ(¥GÄC Ø"qÒzJBçÍ…f5Ô™÷þ7^Dx"ýC	‰P"(‡Gzâ>Ýˆ,È °ûä¯ÌÉ÷È…IàçlQNaF:×îïðÉ;2xFâã×FÁ†YPb-š¤YøÒÎ¬ðk¤ðSÒ>‹,ø(t0à&¼lmŽ²Ð²zÊVgØ	Äbœ9†,DâyÁ"w¦é‘ïñ–„¯ô/þ Ý¶V÷= oýŠð·X	.g®böÝ§Ã–Ð®z©wxÖÑò)Ì°Ì‚;w:ø¾T=Dù’¿aßîüywÛv÷œûÛªsÎYPï¢]Èöæ–Ûò¹ “u€r€zì%qïdáá9^£Ö(:ŠÚ¹\¿fØÛK°¬è/56#øÒzN*Æ»…ùAÇå®àDþÅãøók¬lþîüëîàÃ]·EŸÜ4¬ÏûëõóÓiWœ»ü9Ê¶¸Ÿþ ½L¥£úP BÊmòo|Àùèa|ü%>h»  ¬³ /xfJ‚ãß^ÓÆü«íÜj£k·n×_ï@^¦J •ƒòPwcpÔg»›èÝª}øë
 x÷âÿ¦¥lz¹3lˆ—ê¶¶"ûµØ?úêßåÖí\œsb\òtq\+7k>;Ün wÚ|‰ÂÓš¿÷ì8uÜc&?í¢w¹9€·Ínï·—ÿnñR¡?ØCuÏ±\e3î–¯{‡X-êÇqB‹)^Å”«‰xºƒÿ}†˜Â½Æ÷•x{4ò±»Ø·é+›81›¦î.ãÔÁOF€-&bIY¶%Wµ[‘-žíA
