@@ -1,0 +1,18 @@
+#!/bin/bash
+# This script is licensed under GPLv2
+# This program is free software; you can redistribuite it and/or modify it under the terms of the GNU/General Pubblic License as published the Free software Foundation;
+# either version 2 of the License, or (at your opinion) any later version
+if [ $(whoami) != "root" ]; then
+echo 'devi avere i privilegi di root per eseguire questo script, usa "sudo nautilus-scripts-installer"'
+exit 0
+fi
+apt-get update &> /dev/null | echo "Aggiorno la lista dei pacchetti"
+apt-get -y install nautilus-actions |echo "Aggiorno o installo nautilus-actions"
+cp -rf /usr/share/nautilus-scripts-installer/nautilus-actions $HOME/.gconf/apps | echo "copio i files nella home" 
+chmod -R 777 $HOME/.gconf/apps/nautilus-actions |echo "cambio i permessi alla cartella"
+apt-get -y install mp3info mp3info-gtk |echo "Aggiorno o installo mp3info"
+if [ "$?" = "0" ];then
+echo "completato. Ora termina la sessione attuale per vedere i cambiamenti"
+else
+echo  "errore."
+fi
