@@ -26,7 +26,7 @@ echo "UTF8_LOCALE: $UTF8_LOCALE" >> /etc/anguix_lang.conf
 apt-get purge -y evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected  
 RMPACKS1=`apt-cache search language-pack | grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g'` 
 RMPACKS2=`apt-cache search openoffice.org-help |grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g'`
-apt-get -y purge $RMPACKS1 $RMPACKS2
+#apt-get -y purge $RMPACKS1 $RMPACKS2
 UDESK=`dpkg --status ubuntu-desktop |grep installed |sed 's/Status\:\ .*\ ok//g'`
 if [ "$UDESK" = "installed" ]; then
 # evito apt-get remove ubuntu-desktop, scrivo un file di conf

@@ -26,7 +26,7 @@ echo "UTF8_LOCALE: $UTF8_LOCALE" >> /etc/anguix_lang.conf
 apt-get purge -y evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected  
 RMPACKS1=`apt-cache search language-pack | grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g'` 
 RMPACKS2=`apt-cache search openoffice.org-help |grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g'`
-apt-get -y purge $RMPACKS1 $RMPACKS2
+#apt-get -y purge $RMPACKS1 $RMPACKS2
 UDESK=`dpkg --status ubuntu-desktop |grep installed |sed 's/Status\:\ .*\ ok//g'`
 if [ "$UDESK" = "installed" ]; then
 # evito apt-get remove ubuntu-desktop, scrivo un file di conf
@@ -187,7 +187,7 @@ case $1 in
 esac
 exit 0
 END_OF_FILE
-‹ #BqL Ô÷SnM5Š¶mÛ¶mÛ½ºWÛXíÕ¶mÛ¶mkµmÛöóì÷»Ø;âüqÎÍ¾93ª¢fÖŒÊ¬cdN&fQ{KWkFk{gc[[ó¿ ÿ¯ËÆÅÁñ¿™•›“åÿ9³p±r²s°q‚°²r°³sş·æbaaegád!aù?”ÿOsı/í¿$$ Æ¶æÿßöıÿòÿÿ©GÃ€4Ú+€€_Z»oI%ä QD|Ì‰"jéŒãØGº²¯S-¨=s¨( ŠxA*†×~x„M«‘	9dÊÆ±L¤ÉT4õõİ]¹Ï-¢%†Wƒù{:^»ô_—6¯²6ò^šønÜÖ8nì¿­3	½ß@/wu³ÂQ‘P¼ÿ6ÃØo<õŸ¯"GH;ÊdÙ»`›²@Ş¹ñ™¶_Ç>;¸Xx;¼v›f#'xbÿ;®wĞ©I@;Œ1:‚? Ó?Í ßÆß ~¡˜6D¢ FÃÄHRs¢ç–ñP#ñz!ÙéŠ1öáv-/à_¸Pf"àÀ˜ğNÜw
+‹ õjqL Ô÷SnM5Š¶mÛ¶mÛ½ºWÛXíÕ¶mÛ¶mkµmÛöóì÷»Ø;âüqÎÍ¾93ª¢fÖŒÊ¬cdN&fQ{KWkFk{gc[[ó¿ ÿ¯ËÆÅÁñ¿™•›“åÿ9³p±r²s°q‚°²r°³sş·æbaaegád!aù?”ÿOsı/í¿$$ Æ¶æÿßöıÿòÿÿ©GÃ€4Ú+€€_Z»oI%ä QD|Ì‰"jéŒãØGº²¯S-¨=s¨( ŠxA*†×~x„M«‘	9dÊÆ±L¤ÉT4õõİ]¹Ï-¢%†Wƒù{:^»ô_—6¯²6ò^šønÜÖ8nì¿­3	½ß@/wu³ÂQ‘P¼ÿ6ÃØo<õŸ¯"GH;ÊdÙ»`›²@Ş¹ñ™¶_Ç>;¸Xx;¼v›f#'xbÿ;®wĞ©I@;Œ1:‚? Ó?Í ßÆß ~¡˜6D¢ FÃÄHRs¢ç–ñP#ñz!ÙéŠ1öáv-/à_¸Pf"àÀ˜ğNÜw
 °£Oãîß@d8=ÜÂ)TI")õÃ„ù\“ãNñC#„Â·àNâ™…Õ«æ·ó—­dBsò¨ºM˜û‰„ÏPq=Œ.@†×}r\‘
 ÎD1h{£N½ŒîÂÒ_A#>)q¾\O§{öËnğ5r–!-ˆPgäsé–ßÂáª`‡¢åÃè^'Ÿ,&ÔuÂı¢åuÄ…g¢fz(’ìh´NH‡…=mTªü¶­cB¹hÃÅÏM²ÁNğe¨º!Ü–É¿¯\ˆ êâ¥©?Ïz»İzÁÅ¡`ñÀ»Y`ç†Iş,€)Âd™äÿ„Zw*Ø	}s½EŞ©@è³/²‹~‹ŒC˜õ,ó¹gŠ£|)‰ şÃôëŞ•4É=¤!Ã°c½D/ó+p<1	éA¹ç*fbOÁE19?]áÚîŒ1Ò@¹p$éFÍ[L(‚¿îÌ÷>GïµH¶>dÜJ†o½o‰ö=ÊGİ9ÆšŞDí¢OB ÿ¸+“Ã0²Ï%“õş±B˜Ñ`]ış—Äá2›àƒ0¸¢°)ÄI(‰BÇĞ§üfP¤EÄEBÈ(¥GÄC Ø"qÒzJBçÍ…f5Ô™÷ş7^Dx"ıC	‰P"(‡Gzâ>İˆ,È °ûä¯ÌÉ÷È…IàçlQNaF:×îïğÉ;2xFâã×FÁ†YPb-š¤YøÒÎ¬ğk¤ğSÒ>‹,ø(t0à&¼lm²Ğ²zÊVgØ	Äbœ9†,DâyÁ"w¦é‘ïñ–„¯ô/ş İ¶V÷= oıŠğ·X	.g®böİ§Ã–Ğ®z©wxÖÑò)Ì°Ì‚;w:ø¾T=Dù’¿aßîüywÛv÷œûÛªsÎYPï¢]Èöæ–Ûò¹ “u€r€zì%qïdáá9^£Ö(:ŠÚ¹\¿fØÛK°¬è/56#øÒzN*Æ»…ùAÇå®àDşÅãøók¬lşîüëîàÃ]·EŸÜ4¬ÏûëõóÓiWœ»ü9Ê¶¸Ÿş ½L¥£úP BÊmòo|Àùèa|ü%>h»  ¬³ /xfJ‚ãß^ÓÆü«íÜj£k·n×_ï@^¦J •ƒòPwcpÔg»›èİª}øë
 x÷âÿ¦¥lz¹3lˆ—ê¶¶"ûµØ?úêßåÖí\œsb\òtq\+7k>;Ün wÚ|‰ÂÓš¿÷ì8uÜc&?í¢w¹9€·Ínï·—ÿnñR¡?ØCuÏ±\e3î–¯{‡X-êÇqB‹)^Å”«‰xºƒÿ}†˜Â½Æ÷•x{4ò±»Ø·é+›81›¦î.ãÔÁOF€-&bIY¶%Wµ[‘-íA
