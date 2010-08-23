@@ -121,7 +121,8 @@ style "theme-default"
         listviewstyle = 1 # 0 = nothing, 1 = dotted
         scrollbarstyle = 1 # Enable or disable circles, stripes, handles
         animation = TRUE # FALSE = disabled, TRUE = enabled
-        hilight_shade = 1.06
+        scrollbar_color = "#11A819"
+        hilight_ratio = 1.06
         contrast = 0.99
   }
 }
@@ -194,7 +195,7 @@ style "theme-menu-item"
   engine "murrine" {
   glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
   roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
-  hilight_shade = 1.25
+  hilight_ratio = 1.25
   contrast = 0.0
 }
 	xthickness = 2
@@ -241,7 +242,7 @@ style "theme-button" = "theme-wider"
   engine "murrine" {
   glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
   roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
-  hilight_shade = 1.00
+  hilight_ratio = 1.00
   contrast = 1.0
 }
 	bg[NORMAL] = @bg_color
@@ -261,7 +262,7 @@ style "theme-scrollbars"
   engine "murrine" {
   glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
   roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
-  hilight_shade = 0.93
+  hilight_ratio = 0.93
   contrast = 0.0
 }
   xthickness = 2
@@ -325,7 +326,7 @@ style "theme-dialogbutton" = "theme-default"
   engine "murrine" {
   glazestyle = 3 # 0 = flat hilight, 1 = curved hilight, 2 = concave style, 3 = top curved hilight, 4 = beryl style
   roundness = 3 # 0 = squared, 1 = old default, more will increase roundness
-  hilight_shade = 1.00
+  hilight_ratio = 1.00
   contrast = 0.0
 }
   bg[NORMAL] = shade (.95, @bg_color)
