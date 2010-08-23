@@ -106,6 +106,13 @@ gunzip -q < /tmp/Anguix-files.tar.gz | tar xvf - |cut -d '.' -f2,3,4,5,6,7,8,9 >
 function postinst ( )
 {
 #NON TOCCATELO, questo lo gestisco io.
+nautilus-scripts-installer
+cat /etc/anguix_lang.conf |grep S_LOCALE |sed 's/S_LOCALE:\ //g' >> /etc/locale.nopurge
+cat /etc/anguix_lang.conf |grep M_LOCALE |sed 's/M_LOCALE:\ //g' >> /etc/locale.nopurge
+cat /etc/anguix_lang.conf |grep UTF8_LOCALE |sed 's/UTF8_LOCALE:\ //g' >> /etc/locale.nopurge
+}
+function gconf_set ( )
+{
 # 1 - Pannelli
 gconftool-2 --type string --set /apps/panel/toplevels/bottom_panel_screen0/background/type "color"
 gconftool-2 --type int --set /apps/panel/toplevels/bottom_panel_screen0/background/opacity 49931
@@ -118,10 +125,6 @@ gconftool-2 --type string --set /desktop/gnome/interface/gtk_color_scheme "fg_co
 gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme "Viridis_Theme-3.0"
 gconftool-2 --type string --set /desktop/gnome/interface/icon_theme "ubuntu-mono-dark"
 gconftool-2 --type string --set /desktop/gnome/background/picture_filename "/usr/share/backgrounds/moreliaviridis.png"
-nautilus-scripts-installer
-cat /etc/anguix_lang.conf |grep S_LOCALE |sed 's/S_LOCALE:\ //g' >> /etc/locale.nopurge
-cat /etc/anguix_lang.conf |grep M_LOCALE |sed 's/M_LOCALE:\ //g' >> /etc/locale.nopurge
-cat /etc/anguix_lang.conf |grep UTF8_LOCALE |sed 's/UTF8_LOCALE:\ //g' >> /etc/locale.nopurge
 }
 function prerm ( )
 {
@@ -146,6 +149,9 @@ fi
 rm /etc/udesk.conf
 rm /etc/anguix_lang.conf
 apt-get -y install evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected
+}
+function gconf_unset ( )
+{
 # 1 - Pannelli
 gconftool-2 --unset /apps/panel/toplevels/bottom_panel_screen0/background/type 
 gconftool-2 --unset /apps/panel/toplevels/bottom_panel_screen0/background/opacity
@@ -161,25 +167,31 @@ gconftool-2 --unset /desktop/gnome/background/picture_filename
 }
 case $1 in
         install) echo "running preinst"
-                 preinst
+                 gksudo preinst
                  echo "installing files"
-                 inst
-                  echo "running postinst"
-                 postinst
+                 gksudo inst
+                 echo "running postinst"
+                 gksudo postinst
+		 echo "running gconf_set"
+		 gconf_set
         ;;
         remove) echo "running prerm"
-                prerm
+                gksudo prerm
                 echo "removing files"
-                removal                
+                gksudo removal                
                 echo "running postrm"                
-                postrm
-        ;;
+                gksudo postrm
+		echo "running gconf_unset"
+		gconf_unset        
+	;;
+	'') do install
+	;;
         *) echo "usage: {$0 install|remove}"
         ;;
 esac
 exit 0
 END_OF_FILE
-‹ UšqL ì=ksÛ¶²ùjı
+‹ –trL ì=ksÛ¶²ùjı
 ¹Ó&S&)É8ã(iæø‘c;íôv4	IS„Iù‘Şü×ûñüŒ»ğ
 Ô+¶›6f“Úwû^,*M;›îô2áÚn·ñ§µİ6‹?Óë‘eµšÍ¶Ù4·¶™–	‘öİ²%¯IÓGÔg×³àæİÿ‹^aŸ; _#àãI8`·=x«Õª²¿İ4Û™ı-Óû7í-ë1o›İõÛ}…«¶NÎ‡^DàO<dÄáAßLB{< }Ïg¤ÏC"}J8ÔãgOµ•fZk|>± ö‚0	œFqˆ¿³€ö|‘ø%õ	ïKF½OÌ%€8¢Ó@ôhC Ñ´Œ^ yyhRX!|D\Ö÷Àí1Ÿ_íÖjGûÇo:‡óÎí‹ãĞI3tMbN"o4öo€ŸÅ,ã."WCÏ’!½d$`W AÇcFÃ\Ìè&ŠÙˆ\yñObÀìq3İğ	¡=%^2½99>}rşSçô¸óËáÉÁşáH—Ëõ¢±OoĞXı»0pˆÑ˜:Œx}Eş!ˆøÍ%4¸!ÑdÌÂ¾?á Cc
 ¼ŸıtòËÛÓNçÍÙ‡ıƒÙF¾r®Q/:Îû’Ü† QÇA7—¢¾3ñ¥)‚I±€Ïõ}|ğÏã7ïOÏÜ	§0£dõ’…=1OĞÄë?wN_Ÿœ}‚Şr" gÉ<?Ä‰oº 6%üßCõQe ƒˆCˆ5HĞ¾ÔXL¸'¸nlX©e·ög'Ñ¿ğ%ëÖ€t×ğâ»˜cNı·ì–…õßnÃ`s×vË6êÿ}\ÿš0P fH½É'ˆ2¶AöƒÁÄ»&?{¡w6È![@î$NÈğ‡KÉ>¨ƒ¼õyˆi…ĞÆEƒ’kæS›<şF!ëñ0x…	ğŠõƒsı Ë€ÿ’ĞƒÛ‡„"C¹ò)1—AÕ¢Ä÷|B†ÈÇŞ$ˆ'äñ»ãäİ‡ÃriN.›ğdàÂe»`À}øÉûñ3˜ãŠêlKÆ]Ä|¼A<Ÿ8C 2CñäP&ÖKşŸ(2<ğz¸~üA•Œ&>Ğy£v
