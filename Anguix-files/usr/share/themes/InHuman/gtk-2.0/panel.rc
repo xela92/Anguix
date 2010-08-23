@@ -1,0 +1,28 @@
+style "panel"
+{
+
+	bg[NORMAL] = "#131313"
+	bg[SELECTED]      = shade (0.50, @bg_color)
+	#bg_pixmap[NORMAL] = "panel_small.png"
+	fg[NORMAL] = shade (12.00, @fg_color)
+}
+
+
+
+widget "*PanelWidget*" 					style "panel"
+widget "*PanelApplet*" 					style "panel"
+widget "*fast-user-switch*"				style "panel" # Workaround for Fast User Switch applet
+class "PanelApp*" 					style "panel"
+class "PanelToplevel*" 					style "panel"
+widget_class "*Panel*<GtkMenuBar>*"           		style:highest "panel" # The panel menubar
+widget "*TomboyTray*"					style "panel" # Workaround for Tomboy
+widget "*TomboyApplet*"					style "panel"
+
+#XFCE panel
+widget_class "*notif*"		style "panel"
+widget_class "*Notif*"		style "panel"
+widget_class "*Tray*"		style "panel"
+widget_class "*tray*"		style "panel"
+widget "*Xfce*Panel*"		style "panel"
+class "*Xfce*Panel*"		style "panel"
+

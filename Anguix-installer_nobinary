@@ -152,6 +152,7 @@ fi
 rm /etc/udesk.conf
 rm /etc/anguix_lang.conf
 apt-get -y install evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected
+
 }
 function gconf_unset ( )
 {
@@ -188,6 +189,10 @@ case $1 in
                 gksudo postrm
 		echo "running gconf_unset"
 		gconf_unset        
+		case $2 in
+			--purge) gksudo ang_clean
+			;;
+		esac
 	;;
         *) echo "usage: {$0 install|remove}"
         ;;
