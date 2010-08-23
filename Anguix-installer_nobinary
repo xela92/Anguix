@@ -208,16 +208,17 @@ case $1 in
 		chk_root
 		echo "running prerm"
                 prerm
+		case $2 in
+			--purge) sudo ang_clean
+			;;
+		esac
                 echo "removing files"
                 removal                
                 echo "running postrm"                
                 postrm
 		echo "running gconf_unset"
 		gconf_unset        
-		case $2 in
-			--purge) sudo ang_clean
-			;;
-		esac
+
 	;;
         *) echo "usage: {$0 install|remove}"
         ;;
