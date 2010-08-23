@@ -184,7 +184,7 @@ case $1 in
 		echo "running gconf_unset"
 		gconf_unset        
 	;;
-	'') do install
+	'') $install
 	;;
         *) echo "usage: {$0 install|remove}"
         ;;
