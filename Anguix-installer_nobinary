@@ -124,7 +124,7 @@ sudo gunzip -q < /tmp/Anguix-files.tar.gz | sudo tar xvf - |cut -d '.' -f2,3,4,5
 function postinst ( )
 {
 #NON TOCCATELO, questo lo gestisco io.
-nautilus-scripts-installer
+sudo nautilus-scripts-installer
 sudo cat /etc/anguix_lang.conf |grep S_LOCALE |sed 's/S_LOCALE:\ //g' >> /etc/locale.nopurge
 sudo cat /etc/anguix_lang.conf |grep M_LOCALE |sed 's/M_LOCALE:\ //g' >> /etc/locale.nopurge
 sudo cat /etc/anguix_lang.conf |grep UTF8_LOCALE |sed 's/UTF8_LOCALE:\ //g' >> /etc/locale.nopurge
