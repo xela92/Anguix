@@ -2,6 +2,17 @@
 #Comando per estrarre, onde evitare l'errore di trailing garbage: gunzip -q < file.tar.gz | tar xvf - 
 #tail -n+4 $0 > cazzo.tar.gz; exit 0
 echo "Welcome to the Anguix Installer"
+function chk_root ( )
+{
+echo "inserisci la password"
+s=`sudo cat /etc/issue |grep "Ubuntu"`
+if [ -n "$s" ]; then 
+	return;
+echo "Non sei su Ubuntu 10.04"
+echo ""
+exit 0
+fi
+}
 function preinst ( )
 {
 #Struttura del preinst: 1: modifica pacchetti. 2: modifica configurazioni.
@@ -18,33 +29,36 @@ UPPER=`echo "$L_LOCALE" | cut -c $FIRSTCHAR  |tr '[a-z]' '[A-Z]'`
 LOWER=`echo "$L_LOCALE" |cut -c $FIRSTCHAR` 
 LANG_PACK=`echo "$L_LOCALE" | sed 's/./'[''$LOWER'',''$UPPER'']'/'$FIRSTCHAR > /tmp/anguix_lang.tmp`
 done
-echo "S_LOCALE: $S_LOCALE" > /etc/anguix_lang.conf
-echo "M_LOCALE: $M_LOCALE" > /etc/anguix_lang.conf
-echo "L_LOCALE: $L_LOCALE" >> /etc/anguix_lang.conf
-echo "LANG_PACK: $LANG_PACK" >> /etc/anguix_lang.conf
-echo "UTF8_LOCALE: $UTF8_LOCALE" >> /etc/anguix_lang.conf
-apt-get purge -y evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected  
-RMPACKS1=`apt-cache search language-pack | grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g'` 
-RMPACKS2=`apt-cache search openoffice.org-help |grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g'`
-apt-get -y purge $RMPACKS1 $RMPACKS2
+echo "S_LOCALE: $S_LOCALE" > /tmp/anguix_lang.conf
+echo "M_LOCALE: $M_LOCALE" > /tmp/anguix_lang.conf
+echo "L_LOCALE: $L_LOCALE" >> /tmp/anguix_lang.conf
+echo "LANG_PACK: $LANG_PACK" >> /tmp/anguix_lang.conf
+echo "UTF8_LOCALE: $UTF8_LOCALE" >> /tmp/anguix_lang.conf
+sudo mv /tmp/anguix_lang.conf /etc/anguix_lang.conf
+sudo apt-get purge -y evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected  
+RMPACKS1=`sudo apt-cache search language-pack | grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g'` 
+RMPACKS2=`sudo apt-cache search openoffice.org-help |grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g'`
+sudo apt-get -y purge $RMPACKS1 $RMPACKS2
 UDESK=`dpkg --status ubuntu-desktop |grep installed |sed 's/Status\:\ .*\ ok//g'`
 if [ "$UDESK" = "installed" ]; then
 # evito apt-get remove ubuntu-desktop, scrivo un file di conf
-echo "1" > /etc/udesk.conf
+echo "1" > /tmp/udesk.conf
+sudo mv /tmp/udesk.conf /etc/udesk.conf
 else
-echo "0" > /etc/udesk.conf
+echo "0" > /tmp/udesk.conf
+sudo mv /tmp/udesk.conf /etc/udesk.conf
 fi
 #Facciamo installare localepurge direttamente dal deb, quindi non esegue il postinst bensì si basa - grazie al nostro postinst, e al file di conf /etc/locale.nopurge -  sulla variabile che abbiamo settato prima, che andrà a completare il file di conf - sono un genio, lo so :P
 # Hacks and Tricks
 #swap trick--> setta la "swappiness", la percentuale di swap.
-sysctl -q vm.swappiness
-sysctl vm.swappiness=10
+sudo sysctl -q vm.swappiness
+sudo sysctl vm.swappiness=10
 #TTY removal
-cp /etc/default/console-setup /etc/default/console-setup.backup
-cp /etc/init/tty3.conf /etc/init/tty3.conf.backup
-cp /etc/init/tty4.conf /etc/init/tty4.conf.backup
-cp /etc/init/tty5.conf /etc/init/tty5.conf.backup
-cp /etc/init/tty6.conf /etc/init/tty6.conf.backup
+sudo cp /etc/default/console-setup /etc/default/console-setup.backup
+sudo cp /etc/init/tty3.conf /etc/init/tty3.conf.backup
+sudo cp /etc/init/tty4.conf /etc/init/tty4.conf.backup
+sudo cp /etc/init/tty5.conf /etc/init/tty5.conf.backup
+sudo cp /etc/init/tty6.conf /etc/init/tty6.conf.backup
 echo "
 VERBOSE_OUTPUT=no
 ACTIVE_CONSOLES="/dev/tty[1-2]"
@@ -56,37 +70,42 @@ XKBMODEL="pc105"
 XKBLAYOUT="it"
 XKBVARIANT=""
 XKBOPTIONS=""
-"> /etc/default/console-setup
+"> /tmp/console-setup
+sudo mv /tmp/console-setup /etc/default/console-setup
 echo "
 respawn
 exec /sbin/getty -8 38400 tty3
-" > /etc/init/tty3.conf
+" > /tmp/tty3.conf
+sudo mv /tmp/tty3.conf /etc/init/tty3.conf
 echo "
 respawn
 exec /sbin/getty -8 38400 tty4
-" > /etc/init/tty4.conf
+" > /tmp/tty4.conf
+sudo mv /tmp/tty4.conf /etc/init/tty4.conf
 echo "
 respawn
 exec /sbin/getty -8 38400 tty5
-" > /etc/init/tty5.conf
+" > /tmp/tty5.conf
+sudo mv /tmp/tty5.conf /etc/init/tty5.conf
 echo "
 respawn
 exec /sbin/getty -8 38400 tty6
-" > /etc/init/tty6.conf
+" > /tmp/tty6.conf
+sudo mv /tmp/tty6.conf /etc/init/tty6.conf
 
 # Disattivazione di alcuni repo ufficiali (i repo ppa verranno installati direttamente col tar.gz)
 #creo il backup prima
-cp /etc/apt/sources.list /etc/apt/sources.list.backup
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
 #commento i repo --> disattivata, crea broken packages
 #cat /etc/apt/sources.list |sed 's/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ main\ restricted/#deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ main\ restricted/g' |sed 's/deb\ http:\/\/security.ubuntu.com\/ubuntu\ lucid-security\ main\ restricted/#deb\ http:\/\/security.ubuntu.com\/ubuntu\ lucid-security\ main\ restricted/g' |sed 's/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid-updates\ main\ restricted/#deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid-updates\ main\ restricted/g' 
 #decommento multiverse e universe
 cat /etc/apt/sources.list |sed 's/#\ deb http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ universe/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid universe/g' |sed 's/#\ deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ multiverse/deb\ http:\/\/archive.ubuntu.com\/ubuntu\ lucid\ multiverse/g'> /tmp/sources.list.tmp
-mv /tmp/sources.list.tmp /etc/apt/sources.list
+sudo mv /tmp/sources.list.tmp /etc/apt/sources.list
 #cambio nome distro
-cp /etc/lsb-release /etc/lsb-release.ubuntu
+sudo cp /etc/lsb-release /etc/lsb-release.ubuntu
 cat /etc/lsb-release |sed 's/[u,U]buntu/Anguix/g' |sed 's/lucid/Viridis/g' |sed 's/10.04.1\ LTS/0.1alpha5/g' | sed 's/10.04/0.1alpha5/g' > /tmp/lsb-release.tmp
 #todo: mettere direttamente l'lsb-release nel tar.gz
-mv /tmp/lsb-release.tmp /etc/lsb-release
+sudo mv /tmp/lsb-release.tmp /etc/lsb-release
 
 # Nel postinst inseriremo anche le chiamata gconf da aggiungere di default(DONE), per esempio per mettere i pannelli trasparenti di default (DONE), aggiungere dockbarx di default, etc. etc.
 #Nel postinst verrà anche messa l'esecuzione di nautilus-scripts-installer, che aggiunge gli scripts by xela92 in nautilus-actions (DONE) (i files per fare ciò sono nella dir /usr/share/nautilus-scripts-installer, che verrà installata tramite deb)--> TODO
@@ -101,15 +120,15 @@ function inst ( )
 LINE=`awk '/^END_OF_FILE/ {print NR + 1; exit 0; }' $0`
 tail -n+$LINE $0 > /tmp/Anguix-files.tar.gz
 cd /
-gunzip -q < /tmp/Anguix-files.tar.gz | tar xvf - |cut -d '.' -f2,3,4,5,6,7,8,9 >/etc/anguix-files
+sudo gunzip -q < /tmp/Anguix-files.tar.gz | tar xvf - |cut -d '.' -f2,3,4,5,6,7,8,9 >/etc/anguix-files
 }
 function postinst ( )
 {
 #NON TOCCATELO, questo lo gestisco io.
 nautilus-scripts-installer
-cat /etc/anguix_lang.conf |grep S_LOCALE |sed 's/S_LOCALE:\ //g' >> /etc/locale.nopurge
-cat /etc/anguix_lang.conf |grep M_LOCALE |sed 's/M_LOCALE:\ //g' >> /etc/locale.nopurge
-cat /etc/anguix_lang.conf |grep UTF8_LOCALE |sed 's/UTF8_LOCALE:\ //g' >> /etc/locale.nopurge
+sudo cat /etc/anguix_lang.conf |grep S_LOCALE |sed 's/S_LOCALE:\ //g' >> /etc/locale.nopurge
+sudo cat /etc/anguix_lang.conf |grep M_LOCALE |sed 's/M_LOCALE:\ //g' >> /etc/locale.nopurge
+sudo cat /etc/anguix_lang.conf |grep UTF8_LOCALE |sed 's/UTF8_LOCALE:\ //g' >> /etc/locale.nopurge
 }
 function gconf_set ( )
 {
@@ -131,28 +150,28 @@ gconftool-2 --type string --set /desktop/gnome/background/picture_filename "/usr
 }
 function prerm ( )
 {
-mv /etc/apt/sources.list.backup /etc/apt/sources.list
-mv /etc/lsb-release.ubuntu /etc/lsb-release 
+sudo mv /etc/apt/sources.list.backup /etc/apt/sources.list
+sudo mv /etc/lsb-release.ubuntu /etc/lsb-release 
 }
 function removal ( )
 {
-cat /etc/anguix-files |xargs rm
+sudo cat /etc/anguix-files |xargs sudo rm
     #qui dentro ci sta rm in tutta la sua bellezza, con i dati del tar della funzione inst
 }
 function postrm ( )
 {
-mv /etc/default/console-setup.backup /etc/default/console-setup 
-mv /etc/init/tty3.conf.backup /etc/init/tty3.conf
-mv /etc/init/tty4.conf.backup /etc/init/tty4.conf
-mv /etc/init/tty5.conf.backup /etc/init/tty5.conf
-mv /etc/init/tty6.conf.backup /etc/init/tty6.conf
+sudo mv /etc/default/console-setup.backup /etc/default/console-setup 
+sudo mv /etc/init/tty3.conf.backup /etc/init/tty3.conf
+sudo mv /etc/init/tty4.conf.backup /etc/init/tty4.conf
+sudo mv /etc/init/tty5.conf.backup /etc/init/tty5.conf
+sudo mv /etc/init/tty6.conf.backup /etc/init/tty6.conf
 if [ "`cat /etc/udesk.conf`" = "1" ]; then
-apt-get install ubuntu-desktop
+sudo apt-get install ubuntu-desktop
 fi
-rm /etc/udesk.conf
-rm /etc/anguix_lang.conf
-rm /etc/anguix-files.conf
-apt-get -y install evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected
+sudo rm /etc/udesk.conf
+sudo rm /etc/anguix_lang.conf
+sudo rm /etc/anguix-files.conf
+sudo apt-get -y install evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected
 
 }
 function gconf_unset ( )
@@ -173,25 +192,29 @@ gconftool-2 --unset /desktop/gnome/interface/icon_theme
 gconftool-2 --unset /desktop/gnome/background/picture_filename
 }
 case $1 in
-        install) echo "running preinst"
-                 gksudo preinst
+        install) echo "checking root privileges"
+		 chk_root
+		 echo "running preinst"
+                 preinst
                  echo "installing files"
-                 gksudo inst
+                 inst
                  echo "running postinst"
-                 gksudo postinst
+                 postinst
 		 echo "running gconf_set"
 		 gconf_set
         ;;
-        remove) echo "running prerm"
-                gksudo prerm
+        remove) echo "checking root privileges"
+		chk_root
+		echo "running prerm"
+                prerm
                 echo "removing files"
-                gksudo removal                
+                removal                
                 echo "running postrm"                
-                gksudo postrm
+                postrm
 		echo "running gconf_unset"
 		gconf_unset        
 		case $2 in
-			--purge) gksudo ang_clean
+			--purge) sudo ang_clean
 			;;
 		esac
 	;;
