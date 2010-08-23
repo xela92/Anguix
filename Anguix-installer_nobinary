@@ -2,8 +2,6 @@
 #Comando per estrarre, onde evitare l'errore di trailing garbage: gunzip -q < file.tar.gz | tar xvf - 
 #tail -n+4 $0 > cazzo.tar.gz; exit 0
 echo "Welcome to the Anguix Installer"
-function chk_root ( )
-{
 s=`sudo cat /etc/issue |grep "Ubuntu"`
 if [ -n "$s" ]; then 
 	return;
@@ -11,7 +9,6 @@ echo "Non sei su Ubuntu"
 echo ""
 exit 0
 fi
-}
 function preinst ( )
 {
 #Struttura del preinst: 1: modifica pacchetti. 2: modifica configurazioni.
@@ -192,13 +189,10 @@ gconftool-2 --unset /desktop/gnome/interface/icon_theme
 gconftool-2 --unset /desktop/gnome/background/picture_filename
 }
 case $1 in
-        install) echo "checking root privileges"
-		 chk_root
-		 echo "running preinst"
+        install) echo "running preinst"
                  preinst
                  echo "installing files"
-		 chk_root
-                 inst
+		 inst
                  echo "running postinst"
                  postinst
 		 echo "running gconf_set"
