@@ -3,10 +3,8 @@
 #tail -n+4 $0 > cazzo.tar.gz; exit 0
 echo "Welcome to the Anguix Installer"
 s=`sudo cat /etc/issue |grep "Ubuntu"`
-if [ -n "$s" ]; then 
-	return;
+if [ ! -n "$s" ]; then 
 echo "Non sei su Ubuntu"
-echo ""
 exit 0
 fi
 function preinst ( )
