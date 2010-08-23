@@ -4,11 +4,10 @@
 echo "Welcome to the Anguix Installer"
 function chk_root ( )
 {
-echo "inserisci la password"
 s=`sudo cat /etc/issue |grep "Ubuntu"`
 if [ -n "$s" ]; then 
 	return;
-echo "Non sei su Ubuntu 10.04"
+echo "Non sei su Ubuntu"
 echo ""
 exit 0
 fi
@@ -27,12 +26,12 @@ for FIRSTCHAR in 1
 do 
 UPPER=`echo "$L_LOCALE" | cut -c $FIRSTCHAR  |tr '[a-z]' '[A-Z]'` 
 LOWER=`echo "$L_LOCALE" |cut -c $FIRSTCHAR` 
-LANG_PACK=`echo "$L_LOCALE" | sed 's/./'[''$LOWER'',''$UPPER'']'/'$FIRSTCHAR > /tmp/anguix_lang.tmp`
+echo "$L_LOCALE" | sed 's/./'[''$LOWER'',''$UPPER'']'/'$FIRSTCHAR > /tmp/anguix_lang.tmp
 done
 echo "S_LOCALE: $S_LOCALE" > /tmp/anguix_lang.conf
 echo "M_LOCALE: $M_LOCALE" > /tmp/anguix_lang.conf
 echo "L_LOCALE: $L_LOCALE" >> /tmp/anguix_lang.conf
-echo "LANG_PACK: $LANG_PACK" >> /tmp/anguix_lang.conf
+echo "LANG_PACK: $(cat /tmp/anguix_lang.tmp)" >> /tmp/anguix_lang.conf
 echo "UTF8_LOCALE: $UTF8_LOCALE" >> /tmp/anguix_lang.conf
 sudo mv /tmp/anguix_lang.conf /etc/anguix_lang.conf
 sudo apt-get purge -y evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected  
@@ -120,12 +119,12 @@ function inst ( )
 LINE=`awk '/^END_OF_FILE/ {print NR + 1; exit 0; }' $0`
 tail -n+$LINE $0 > /tmp/Anguix-files.tar.gz
 cd /
-sudo gunzip -q < /tmp/Anguix-files.tar.gz | tar xvf - |cut -d '.' -f2,3,4,5,6,7,8,9 >/etc/anguix-files
+sudo gunzip -q < /tmp/Anguix-files.tar.gz | sudo tar xvf - |cut -d '.' -f2,3,4,5,6,7,8,9 >/etc/anguix-files
 }
 function postinst ( )
 {
 #NON TOCCATELO, questo lo gestisco io.
-nautilus-scripts-installer
+sudo nautilus-scripts-installer
 sudo cat /etc/anguix_lang.conf |grep S_LOCALE |sed 's/S_LOCALE:\ //g' >> /etc/locale.nopurge
 sudo cat /etc/anguix_lang.conf |grep M_LOCALE |sed 's/M_LOCALE:\ //g' >> /etc/locale.nopurge
 sudo cat /etc/anguix_lang.conf |grep UTF8_LOCALE |sed 's/UTF8_LOCALE:\ //g' >> /etc/locale.nopurge
