@@ -124,7 +124,7 @@ sudo gunzip -q < /tmp/Anguix-files.tar.gz | sudo tar xvf - |cut -d '.' -f2,3,4,5
 function postinst ( )
 {
 #NON TOCCATELO, questo lo gestisco io.
-sudo nautilus-scripts-installer
+nautilus-scripts-installer
 sudo cat /etc/anguix_lang.conf |grep S_LOCALE |sed 's/S_LOCALE:\ //g' >> /etc/locale.nopurge
 sudo cat /etc/anguix_lang.conf |grep M_LOCALE |sed 's/M_LOCALE:\ //g' >> /etc/locale.nopurge
 sudo cat /etc/anguix_lang.conf |grep UTF8_LOCALE |sed 's/UTF8_LOCALE:\ //g' >> /etc/locale.nopurge
@@ -222,8 +222,7 @@ case $1 in
 esac
 exit 0
 END_OF_FILE
-‹ 
-œrL ì=ksÛ¶²ùjý
+‹ &rL ì=ksÛ¶²ùjý
 ¹Ó&S&)ÉŽ8ã(iæø‘c;íôžv4	IS„Iù‘Þü×ûñüŒ»ð
 Ô+¶›6f“Úwû^,*M;›îô2áÚn·ñ§µÝ6‹?Óë‘eµšÍ¶Ù4·¶™–	‘öÝ²%¯IÓGÔg×³àæÝÿ‹^aŸ; _#àãI8`·=x«Õª²¿Ý4Û™ý-Óû7í-ë1o›ÝõÛ}…«¶NÎ‡^DàO<dÄáAßLB{< }Ïg¤ÏC"}J8ÔãgOµ•fZk|>± ö‚0	œFqˆ¿³€ö|‘ø%õ	ïKF½OÌ%€8¢Ó@ôhC Ñ´Œ^ ŽyyhRX!|D\Ö÷Àí1Ÿ_íÖjGûÇo:‡óÎí‹ãÐI3tMbN"o4öo€ŸÅ,ã."WCÏ’!½d$`W AÇcFÃ\Ìè&ŠÙˆ\yñObÀìq3Ýð	¡=%^2½99>}rþSçô¸óËáÉÁþáH—Ëõ¢±OoÐXý»0pˆÑ˜:Œx}Eþ!ˆøÍ%4¸!ÑdÌÂ¾?á Cc
 ¼ŸýtòËÛÓNçÍÙ‡ýƒÙF¾r®Q/:Îû’Ü† QÇA7—¢¾3ñ¥)‚I±€Ïõ}|ðÏã7ïOÏÜ	§0£dõ’…=1OÐÄë?wN_Ÿœ}‚Þr" gÉ<?Ä‰oº 6%üßCõQe ƒˆCˆ5HÐ¾ÔXL¸'¸nlX©e·ög'Ñ¿ð%ëÖ€t×ðâ»˜cNý·ì–…õßnÃ`s×vË6êÿ}\ÿš0P fH½É'ˆ2¶AöƒÁÄ»&?{¡w6È![@î$NÈð‡KÉ>¨ƒ¼õyˆi…ÐÆEƒ’kæS›<þF!ëñ0x…	ðŠõƒsý Ë€ÿ’ÐƒÛŽ‡„"C¹ò)1—AÕ¢Ä÷|B†ÈÇÞ$ˆ'äñ»ãäÝ‡ÃriN.›ðdàÂe»`À}øÉûñ3˜ãŠêlKÆ]Ä|¼A<Ÿ8C 2CñäP&ÖKþŸ(2<ðz¸~üA•Œ&>Ðy£v
