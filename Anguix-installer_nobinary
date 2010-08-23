@@ -116,6 +116,7 @@ sudo mv /tmp/lsb-release.tmp /etc/lsb-release
 }
 function inst ( )
 {
+
 LINE=`awk '/^END_OF_FILE/ {print NR + 1; exit 0; }' $0`
 tail -n+$LINE $0 > /tmp/Anguix-files.tar.gz
 cd /
@@ -196,6 +197,7 @@ case $1 in
 		 echo "running preinst"
                  preinst
                  echo "installing files"
+		 chk_root
                  inst
                  echo "running postinst"
                  postinst
