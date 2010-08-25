@@ -57,6 +57,7 @@ sudo cp /etc/init/tty3.conf /etc/init/tty3.conf.backup
 sudo cp /etc/init/tty4.conf /etc/init/tty4.conf.backup
 sudo cp /etc/init/tty5.conf /etc/init/tty5.conf.backup
 sudo cp /etc/init/tty6.conf /etc/init/tty6.conf.backup
+#save same souls
 echo "
 VERBOSE_OUTPUT=no
 ACTIVE_CONSOLES="/dev/tty[1-2]"
