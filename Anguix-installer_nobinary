@@ -191,20 +191,16 @@ gconftool-2 --unset /desktop/gnome/interface/icon_theme
 gconftool-2 --unset /desktop/gnome/background/picture_filename
 }
 case $1 in
-        install) sudo -s << EOF
-		 echo "running preinst"
+        install) echo "running preinst"
                  preinst
                  echo "installing files"
 		 inst
                  echo "running postinst"
                  postinst
-		EOF
 		 echo "running gconf_set"
 		 gconf_set
         ;;
-        remove) sudo -s << EOF
-		echo "checking root privileges"
-		echo "running prerm"
+        remove)	echo "running prerm"
                 prerm
 		case $2 in
 			--purge) sudo ang_clean
@@ -214,7 +210,6 @@ case $1 in
                 removal                
                 echo "running postrm"                
                 postrm
-		EOF
 		echo "running gconf_unset"
 		gconf_unset        
 
