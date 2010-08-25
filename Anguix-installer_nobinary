@@ -2,6 +2,10 @@
 #Comando per estrarre, onde evitare l'errore di trailing garbage: gunzip -q < file.tar.gz | tar xvf - 
 #tail -n+4 $0 > cazzo.tar.gz; exit 0
 echo "Welcome to the Anguix Installer"
+if [ "$(whoami)" = "root" ]; then
+echo "run this script as normal user."
+exit 0
+fi
 s=`sudo cat /etc/issue |grep "Ubuntu"`
 if [ ! -n "$s" ]; then 
 echo "Non sei su Ubuntu"
@@ -197,7 +201,6 @@ case $1 in
 		 gconf_set
         ;;
         remove) echo "checking root privileges"
-		chk_root
 		echo "running prerm"
                 prerm
 		case $2 in
