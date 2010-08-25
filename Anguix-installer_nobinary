@@ -6,7 +6,7 @@ if [ "$(whoami)" = "root" ]; then
 echo "run this script as normal user."
 exit 0
 fi
-s=`sudo cat /etc/issue |grep "Ubuntu"`
+s=`cat /etc/issue |grep "Ubuntu"`
 if [ ! -n "$s" ]; then 
 echo "Non sei su Ubuntu"
 exit 0
@@ -191,16 +191,19 @@ gconftool-2 --unset /desktop/gnome/interface/icon_theme
 gconftool-2 --unset /desktop/gnome/background/picture_filename
 }
 case $1 in
-        install) echo "running preinst"
+        install) sudo -s << EOF
+		 echo "running preinst"
                  preinst
                  echo "installing files"
 		 inst
                  echo "running postinst"
                  postinst
+		EOF
 		 echo "running gconf_set"
 		 gconf_set
         ;;
-        remove) echo "checking root privileges"
+        remove) sudo -s << EOF
+		echo "checking root privileges"
 		echo "running prerm"
                 prerm
 		case $2 in
@@ -211,6 +214,7 @@ case $1 in
                 removal                
                 echo "running postrm"                
                 postrm
+		EOF
 		echo "running gconf_unset"
 		gconf_unset        
 

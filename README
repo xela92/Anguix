@@ -4,4 +4,5 @@ To clone the git, do "git clone git://github.com/xela92/Anguix.git".
 Anguix-installer_nobinary: doesn't include the tar, is for human reading.
 build.sh creates the Anguix-installer script. To create the installer, just do
 "./build.sh" inside the ~/Anguix folder.
-Then, install Anguix with ./Anguix-installer (no root required)
+Then, install Anguix with ./Anguix-installer (you will be requested the 
+password)
