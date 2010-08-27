@@ -127,6 +127,7 @@ function inst ( )
 {
 if [ "$GK" = "gk" ]; then
 zenity --progress --pulsate --text="installing files" &
+sleep 3
 fi
 LINE=`awk '/^END_OF_FILE/ {print NR + 1; exit 0; }' $0`
 tail -n+$LINE $0 > /tmp/Anguix-files.tar.gz
@@ -155,7 +156,7 @@ fi
 function gconf_set ( )
 {
 if [ "$GK" = "gk" ]; then
-zenity --progress --pulsate --text="setting themes"
+zenity --progress --pulsate --text="setting themes" &
 fi
 # 1 - Pannelli
 gconftool-2 --type string --set /apps/panel/toplevels/bottom_panel_screen0/background/type "color"
