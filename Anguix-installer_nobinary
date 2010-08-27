@@ -177,7 +177,9 @@ sudo apt-get install ubuntu-desktop
 fi
 sudo rm /etc/udesk.conf
 sudo rm /etc/anguix_lang.conf
+if [ -e /etc/anguix-files.conf ]; then
 sudo rm /etc/anguix-files.conf
+fi
 sudo apt-get -y install evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected
 
 }
