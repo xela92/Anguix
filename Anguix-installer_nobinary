@@ -19,7 +19,6 @@ function preinst ( )
 #Struttura del preinst: 1: modifica pacchetti. 2: modifica configurazioni.
 #Remove Packages - in ordine, programmi, guide, fonts e pacchetti lingua
 #setta le variabili che andranno nel conf di localepurge, così che localepurge possa essere configurato senza la necessità di utilizzare il suo configuratore, ingestibile durante l installazione.
-if [ "$GK" = "gk" ]; then
 zenity --progress --pulsate --auto-close --text="running preinst" &
 fi
 #S_LOCALE=it; M_LOCALE=it_IT; L_LOCALE=italian; UTF8_LOCALE=it_IT.UTF-8
@@ -250,6 +249,21 @@ sudo pkill zenity
 zenity --info --text="Anguix rimossa con successo."
 fi
 }
+if [ "$GK" = "gk" ]; then
+INST_QUEST=`zenity  --list  --text "Vuoi installare o rimuovere Anguix?" --radiolist  --column "" --column "" TRUE Installare FALSE Disinstallare`
+if [ "$INST_QUEST" = "Installare" ]; then
+preinst
+inst
+postinst
+gconf_set
+else
+prerm
+removal
+postrm
+gconf_unset
+fi
+fi
+if [ "$GK" = "" ]; then
 case $1 in
 	'') echo "running preinst"
             preinst
@@ -286,5 +300,6 @@ case $1 in
         *) echo "usage: {$0 install|remove}"
         ;;
 esac
+fi
 exit 0
 END_OF_FILE
