@@ -9,7 +9,8 @@ fi
 sudo -k
 ENV_VAR=`env |grep TERM=`
 if [ "$ENV_VAR" = "" ]; then GK='gk'; else GK=''; fi
-s=`"$GK"sudo cat /etc/issue |grep "Ubuntu"`
+if [ "$ENV_VAR" = "" ]; then DESC='--description="Anguix Installer"'; else DESC=''; fi
+s=`"$GK"sudo $DESC cat /etc/issue |grep "Ubuntu"`
 if [ ! -n "$s" ]; then 
 echo "Non sei su Ubuntu"
 exit 0
