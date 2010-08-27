@@ -185,6 +185,7 @@ function prerm ( )
 {
 if [ "$GK" = "gk" ]; then
 zenity --progress --pulsate --text="running prerm" &
+sleep 3
 fi
 sudo mv /etc/apt/sources.list.backup /etc/apt/sources.list
 sudo mv /etc/lsb-release.ubuntu /etc/lsb-release 
@@ -195,7 +196,7 @@ fi
 function removal ( )
 {
 if [ "$GK" = "gk" ]; then
-zenity --progress --pulsate --text="removing files"
+zenity --progress --pulsate --text="removing files" &
 fi
 sudo cat /etc/anguix-files |xargs sudo rm 2> /dev/null
     #qui dentro ci sta rm in tutta la sua bellezza, con i dati del tar della funzione inst
