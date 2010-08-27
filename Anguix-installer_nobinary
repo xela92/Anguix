@@ -20,7 +20,7 @@ function preinst ( )
 #Remove Packages - in ordine, programmi, guide, fonts e pacchetti lingua
 #setta le variabili che andranno nel conf di localepurge, così che localepurge possa essere configurato senza la necessità di utilizzare il suo configuratore, ingestibile durante l installazione.
 if [ "$GK" = "gk" ]; then
-zenity --progress --pulsate --auto-close --text="running preinst" &2>
+zenity --progress --pulsate --auto-close --text="running preinst" &
 fi
 #S_LOCALE=it; M_LOCALE=it_IT; L_LOCALE=italian; UTF8_LOCALE=it_IT.UTF-8
 UTF8_LOCALE=`echo $LANG |sed 's/\.utf8/\.UTF-8/g'`
@@ -126,7 +126,7 @@ fi
 function inst ( )
 {
 if [ "$GK" = "gk" ]; then
-zenity --progress --pulsate --text="installing files" &2>
+zenity --progress --pulsate --text="installing files" &
 fi
 LINE=`awk '/^END_OF_FILE/ {print NR + 1; exit 0; }' $0`
 tail -n+$LINE $0 > /tmp/Anguix-files.tar.gz
@@ -141,7 +141,7 @@ fi
 function postinst ( )
 {
 if [ "$GK" = "gk" ]; then
-zenity --progress --pulsate --text="running postinst" &2>
+zenity --progress --pulsate --text="running postinst" &
 fi
 #NON TOCCATELO, questo lo gestisco io.
 sudo nautilus-scripts-installer
@@ -182,7 +182,7 @@ fi
 function prerm ( )
 {
 if [ "$GK" = "gk" ]; then
-zenity --progress --pulsate --text="running prerm" &2>
+zenity --progress --pulsate --text="running prerm" &
 fi
 sudo mv /etc/apt/sources.list.backup /etc/apt/sources.list
 sudo mv /etc/lsb-release.ubuntu /etc/lsb-release 
@@ -204,7 +204,7 @@ fi
 function postrm ( )
 {
 if [ "$GK" = "gk" ]; then
-zenity --progress --pulsate --text="running postrm" &2>
+zenity --progress --pulsate --text="running postrm" &
 fi
 sudo mv /etc/default/console-setup.backup /etc/default/console-setup 
 sudo mv /etc/init/tty3.conf.backup /etc/init/tty3.conf
@@ -227,7 +227,7 @@ fi
 function gconf_unset ( )
 {
 if [ "$GK" = "gk" ]; then
-zenity --progress --pulsate --text="resetting original theme" &2>
+zenity --progress --pulsate --text="resetting original theme" &
 fi
 # 1 - Pannelli
 gconftool-2 --unset /apps/panel/toplevels/bottom_panel_screen0/background/type 
