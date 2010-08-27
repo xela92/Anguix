@@ -19,6 +19,7 @@ function preinst ( )
 #Struttura del preinst: 1: modifica pacchetti. 2: modifica configurazioni.
 #Remove Packages - in ordine, programmi, guide, fonts e pacchetti lingua
 #setta le variabili che andranno nel conf di localepurge, così che localepurge possa essere configurato senza la necessità di utilizzare il suo configuratore, ingestibile durante l installazione.
+if [ "$GK" = "gk" ]; then
 zenity --progress --pulsate --auto-close --text="running preinst" &
 fi
 #S_LOCALE=it; M_LOCALE=it_IT; L_LOCALE=italian; UTF8_LOCALE=it_IT.UTF-8
