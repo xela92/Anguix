@@ -6,7 +6,8 @@ if [ "$(whoami)" = "root" ]; then
 echo "run this script as normal user."
 exit 0
 fi
-s=`cat /etc/issue |grep "Ubuntu"`
+sudo -k
+s=`sudo cat /etc/issue |grep "Ubuntu"`
 if [ ! -n "$s" ]; then 
 echo "Non sei su Ubuntu"
 exit 0
@@ -147,6 +148,10 @@ gconftool-2 --type string --set /desktop/gnome/interface/gtk_color_scheme "fg_co
 gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme "Viridis_Theme-3.0"
 gconftool-2 --type string --set /desktop/gnome/interface/icon_theme "ubuntu-mono-dark"
 gconftool-2 --type string --set /desktop/gnome/background/picture_filename "/usr/share/backgrounds/moreliaviridis.png"
+# 4 - GDM
+sudo -u gdm gconftool-2 --set --type string /desktop/gnome/interface/gtk_theme "Viridis_Theme-3.0"
+sudo -u gdm gconftool-2 --type string --set /desktop/gnome/interface/icon_theme "ubuntu-mono-dark"
+sudo -u gdm gconftool-2 --type string --set /desktop/gnome/background/picture_filename "/usr/share/backgrounds/moreliaviridis2.png"
 
 }
 function prerm ( )
