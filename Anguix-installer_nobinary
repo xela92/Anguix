@@ -208,6 +208,7 @@ function postrm ( )
 {
 if [ "$GK" = "gk" ]; then
 zenity --progress --pulsate --text="running postrm" &
+sleep 2
 fi
 sudo mv /etc/default/console-setup.backup /etc/default/console-setup 
 sudo mv /etc/init/tty3.conf.backup /etc/init/tty3.conf
@@ -231,6 +232,7 @@ function gconf_unset ( )
 {
 if [ "$GK" = "gk" ]; then
 zenity --progress --pulsate --text="resetting original theme" &
+sleep 3
 fi
 # 1 - Pannelli
 gconftool-2 --unset /apps/panel/toplevels/bottom_panel_screen0/background/type 
