@@ -9,7 +9,7 @@ fi
 sudo -k
 ENV_VAR=`env |grep TERM=`
 if [ "$ENV_VAR" = "" ]; then GK='gk'; else GK=''; fi
-if [ "$ENV_VAR" = "" ]; then DESC='--description="Anguix Installer"'; else DESC=''; fi
+if [ "$ENV_VAR" = "" ]; then DESC='--description="AnguixInstaller"'; else DESC=''; fi
 s=`"$GK"sudo $DESC cat /etc/issue |grep "Ubuntu"`
 if [ ! -n "$s" ]; then 
 echo "Non sei su Ubuntu"
@@ -112,7 +112,6 @@ sudo cp /etc/lsb-release /etc/lsb-release.ubuntu
 cat /etc/lsb-release |sed 's/[u,U]buntu/Anguix/g' |sed 's/lucid/Viridis/g' |sed 's/10.04.1\ LTS/0.1alpha5/g' | sed 's/10.04/0.1alpha5/g' > /tmp/lsb-release.tmp
 #todo: mettere direttamente lsb-release nel tar.gz
 sudo mv /tmp/lsb-release.tmp /etc/lsb-release
-
 # Nel postinst inseriremo anche le chiamata gconf da aggiungere di default(DONE), per esempio per mettere i pannelli trasparenti di default (DONE), aggiungere dockbarx di default, etc. etc.
 #Nel postinst verrà anche messa l esecuzione di nautilus-scripts-installer, che aggiunge gli scripts by xela92 in nautilus-actions (DONE) (i files per fare ciò sono nella dir /usr/share/nautilus-scripts-installer, che verrà installata tramite deb)--> TODO
 
