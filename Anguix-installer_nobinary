@@ -210,7 +210,6 @@ function postrm ( )
 {
 if [ "$GK" = "gk" ]; then
 zenity --progress --pulsate --text="running postrm" &
-sleep 2
 fi
 sudo mv /etc/default/console-setup.backup /etc/default/console-setup 
 sudo mv /etc/init/tty3.conf.backup /etc/init/tty3.conf
