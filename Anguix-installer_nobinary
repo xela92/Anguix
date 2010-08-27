@@ -178,6 +178,7 @@ sudo -u gdm gconftool-2 --type string --set /desktop/gnome/interface/icon_theme 
 sudo -u gdm gconftool-2 --type string --set /desktop/gnome/background/picture_filename "/usr/share/backgrounds/moreliaviridis2.png"
 if [ "$GK" = "gk" ]; then
 sudo pkill zenity
+zenity --info --text="Anguix installata con successo."
 fi
 }
 function prerm ( )
@@ -246,6 +247,7 @@ gconftool-2 --unset /desktop/gnome/interface/icon_theme
 gconftool-2 --unset /desktop/gnome/background/picture_filename
 if [ "$GK" = "gk" ]; then
 sudo pkill zenity
+zenity --info --text="Anguix rimossa con successo."
 fi
 }
 case $1 in
