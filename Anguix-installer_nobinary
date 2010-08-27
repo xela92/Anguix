@@ -261,11 +261,13 @@ preinst
 inst
 postinst
 gconf_set
-else
+elif [ "$INST_QUEST" = "Disinstallare" ]; then
 prerm
 removal
 postrm
 gconf_unset
+else
+exit 0
 fi
 fi
 if [ "$GK" = "" ]; then
