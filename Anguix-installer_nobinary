@@ -157,6 +157,7 @@ function gconf_set ( )
 {
 if [ "$GK" = "gk" ]; then
 zenity --progress --pulsate --text="setting themes" &
+sleep 3
 fi
 # 1 - Pannelli
 gconftool-2 --type string --set /apps/panel/toplevels/bottom_panel_screen0/background/type "color"
