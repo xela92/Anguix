@@ -35,6 +35,7 @@ echo "LANG_PACK: $(cat /tmp/anguix_lang.tmp)" >> /tmp/anguix_lang.conf
 echo "UTF8_LOCALE: $UTF8_LOCALE" >> /tmp/anguix_lang.conf
 sudo mv /tmp/anguix_lang.conf /etc/anguix_lang.conf
 sudo apt-get purge -y evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected  
+sudo apt-get autoremove --purge -y
 RMPACKS1=`sudo apt-cache search language-pack | grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g'` 
 RMPACKS2=`sudo apt-cache search openoffice.org-help |grep -v -f /tmp/anguix_lang.tmp |sed 's/\ -\ .*//g'`
 sudo apt-get -y purge $RMPACKS1 $RMPACKS2
@@ -161,7 +162,7 @@ sudo mv /etc/lsb-release.ubuntu /etc/lsb-release
 }
 function removal ( )
 {
-sudo cat /etc/anguix-files |xargs sudo rm
+sudo cat /etc/anguix-files |xargs sudo rm 2> /dev/null
     #qui dentro ci sta rm in tutta la sua bellezza, con i dati del tar della funzione inst
 }
 function postrm ( )
