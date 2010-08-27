@@ -244,12 +244,12 @@ gconftool-2 --unset /apps/panel/toplevels/top_panel_screen0/background/opacity
 gconftool-2 --unset /apps/panel/toplevels/top_panel_screen0/background/color
 gconftool-2 --unset /apps/panel/toplevels/bottom_panel_screen0/background/color
 # 2 - Metacity
-gconftool-2 --unset /apps/metacity/general/theme 
+gconftool-2 --type string --set /apps/metacity/general/theme "" 
 gconftool-2 --unset /desktop/gnome/interface/gtk_color_scheme 
 # 3 - Temi
-gconftool-2 --unset /desktop/gnome/interface/gtk_theme 
-gconftool-2 --unset /desktop/gnome/interface/icon_theme
-gconftool-2 --unset /desktop/gnome/background/picture_filename
+gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme "Ambiance" 
+#gconftool-2 --type string --set /desktop/gnome/interface/icon_theme
+gconftool-2 --type string --set /desktop/gnome/background/picture_filename "/usr/share/backgrounds/warty-final-ubuntu.png"
 if [ "$GK" = "gk" ]; then
 sudo pkill zenity
 zenity --info --text="Anguix rimossa con successo."
