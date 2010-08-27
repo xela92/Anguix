@@ -7,8 +7,8 @@ echo "run this script as normal user."
 exit 0
 fi
 sudo -k
-ENV_VAR=`env |grep TERM=xterm |sed 's/=.*//g'`
-if [ "$ENV_VAR" = "TERM" ]; then GK=''; else GK='gk'; fi
+ENV_VAR=`env |grep TERM=`
+if [ "$ENV_VAR" = "" ]; then GK='gk'; else GK=''; fi
 s=`"$GK"sudo cat /etc/issue |grep "Ubuntu"`
 if [ ! -n "$s" ]; then 
 echo "Non sei su Ubuntu"
