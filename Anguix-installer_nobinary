@@ -8,7 +8,7 @@ exit 0
 fi
 sudo -k
 ENV_VAR=`env |grep TERM=xterm |sed 's/=.*//g'` = "TERM"`
-if [ "$ENV_VAR" = "TERM" ]; then GK='' && ZP=`zenity --progress --pulsate --autoclose --text="sto installando Anguix"`; else GK='gk' && ZP=''; fi
+if [ "$ENV_VAR" = "TERM" ]; then GK=''; else GK='gk'; fi
 s=`"$GK"sudo cat /etc/issue |grep "Ubuntu"`
 if [ ! -n "$s" ]; then 
 echo "Non sei su Ubuntu"
@@ -19,6 +19,9 @@ function preinst ( )
 #Struttura del preinst: 1: modifica pacchetti. 2: modifica configurazioni.
 #Remove Packages - in ordine, programmi, guide, fonts e pacchetti lingua
 #setta le variabili che andranno nel conf di localepurge, così che localepurge possa essere configurato senza la necessità di utilizzare il suo configuratore, ingestibile durante l installazione.
+if [ "$GK" = "gk" ]; then
+zenity --progress --pulsate --auto-close --text="running preinst" 2> &
+fi
 #S_LOCALE=it; M_LOCALE=it_IT; L_LOCALE=italian; UTF8_LOCALE=it_IT.UTF-8
 UTF8_LOCALE=`echo $LANG |sed 's/\.utf8/\.UTF-8/g'`
 S_LOCALE=`for i in 1,2; do echo $LANG |cut -c $i; done`
@@ -116,27 +119,44 @@ sudo mv /tmp/lsb-release.tmp /etc/lsb-release
 #IDEA: apt-get remove temididefault (DONE), installazione via tar.gz di quelli ok, workaroundosa ma mi piace
 #
 # aggiungere immagini a tema, suoni a tema --> magari per la beta questo OPPURE TOGLIERE TUTTI I FASTIDIOSI SUONI DI SISTEMA, ALMENO DI DEFAULT, CHE NE DICI??? --> accettata
+if [ "$GK" = "gk" ]; then
+sudo pkill zenity
+fi
 }
 function inst ( )
 {
-
+if [ "$GK" = "gk" ]; then
+zenity --progress --pulsate --text="installing files" 2> &
+fi
 LINE=`awk '/^END_OF_FILE/ {print NR + 1; exit 0; }' $0`
 tail -n+$LINE $0 > /tmp/Anguix-files.tar.gz
 cd /
 sudo -s << THXRINALDI
 gunzip -q < /tmp/Anguix-files.tar.gz | sudo tar xvf - |cut -d '.' -f2,3,4,5,6,7,8,9 >/etc/anguix-files
 THXRINALDI
+if [ "$GK" = "gk" ]; then
+sudo pkill zenity
+fi
 }
 function postinst ( )
 {
+if [ "$GK" = "gk" ]; then
+zenity --progress --pulsate --text="running postinst" 2> &
+fi
 #NON TOCCATELO, questo lo gestisco io.
 sudo nautilus-scripts-installer
 sudo cat /etc/anguix_lang.conf |grep S_LOCALE |sed 's/S_LOCALE:\ //g' >> /etc/locale.nopurge
 sudo cat /etc/anguix_lang.conf |grep M_LOCALE |sed 's/M_LOCALE:\ //g' >> /etc/locale.nopurge
 sudo cat /etc/anguix_lang.conf |grep UTF8_LOCALE |sed 's/UTF8_LOCALE:\ //g' >> /etc/locale.nopurge
+if [ "$GK" = "gk" ]; then
+sudo pkill zenity
+fi
 }
 function gconf_set ( )
 {
+if [ "$GK" = "gk" ]; then
+zenity --progress --pulsate --text="setting themes"
+fi
 # 1 - Pannelli
 gconftool-2 --type string --set /apps/panel/toplevels/bottom_panel_screen0/background/type "color"
 gconftool-2 --type int --set /apps/panel/toplevels/bottom_panel_screen0/background/opacity 49931
@@ -155,20 +175,37 @@ gconftool-2 --type string --set /desktop/gnome/background/picture_filename "/usr
 sudo -u gdm gconftool-2 --set --type string /desktop/gnome/interface/gtk_theme "Viridis_Theme-3.0"
 sudo -u gdm gconftool-2 --type string --set /desktop/gnome/interface/icon_theme "ubuntu-mono-dark"
 sudo -u gdm gconftool-2 --type string --set /desktop/gnome/background/picture_filename "/usr/share/backgrounds/moreliaviridis2.png"
-
+if [ "$GK" = "gk" ]; then
+sudo pkill zenity
+fi
 }
 function prerm ( )
 {
+if [ "$GK" = "gk" ]; then
+zenity --progress --pulsate --text="running prerm" 2> &
+fi
 sudo mv /etc/apt/sources.list.backup /etc/apt/sources.list
 sudo mv /etc/lsb-release.ubuntu /etc/lsb-release 
+if [ "$GK" = "gk" ]; then
+sudo pkill zenity
+fi
 }
 function removal ( )
 {
+if [ "$GK" = "gk" ]; then
+zenity --progress --pulsate --text="removing files"
+fi
 sudo cat /etc/anguix-files |xargs sudo rm 2> /dev/null
     #qui dentro ci sta rm in tutta la sua bellezza, con i dati del tar della funzione inst
+if [ "$GK" = "gk" ]; then
+sudo pkill zenity
+fi
 }
 function postrm ( )
 {
+if [ "$GK" = "gk" ]; then
+zenity --progress --pulsate --text="running postrm" 2> &
+fi
 sudo mv /etc/default/console-setup.backup /etc/default/console-setup 
 sudo mv /etc/init/tty3.conf.backup /etc/init/tty3.conf
 sudo mv /etc/init/tty4.conf.backup /etc/init/tty4.conf
@@ -183,10 +220,15 @@ if [ -e /etc/anguix-files.conf ]; then
 sudo rm /etc/anguix-files.conf
 fi
 sudo apt-get -y install evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected
-
+if [ "$GK" = "gk" ]; then
+sudo pkill zenity
+fi
 }
 function gconf_unset ( )
 {
+if [ "$GK" = "gk" ]; then
+zenity --progress --pulsate --text="resetting original theme" 2> &
+fi
 # 1 - Pannelli
 gconftool-2 --unset /apps/panel/toplevels/bottom_panel_screen0/background/type 
 gconftool-2 --unset /apps/panel/toplevels/bottom_panel_screen0/background/opacity
@@ -201,6 +243,9 @@ gconftool-2 --unset /desktop/gnome/interface/gtk_color_scheme
 gconftool-2 --unset /desktop/gnome/interface/gtk_theme 
 gconftool-2 --unset /desktop/gnome/interface/icon_theme
 gconftool-2 --unset /desktop/gnome/background/picture_filename
+if [ "$GK" = "gk" ]; then
+sudo pkill zenity
+fi
 }
 case $1 in
 	'') echo "running preinst"
