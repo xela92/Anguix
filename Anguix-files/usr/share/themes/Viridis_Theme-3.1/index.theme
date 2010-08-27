@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Viridis_Theme-3.1
+Type=X-GNOME-Metatheme
+Comment=
+
+[X-GNOME-Metatheme]
+GtkTheme=Murrina-Mint
+MetacityTheme=Turrican
+IconTheme=ubuntu-mono-dark
+GtkColorScheme=fg_color:#28d69a6c5bb1,bg_color:#181818181818,text_color:#00000448002e,base_color:#c571f8fee6c6,selected_fg_color:#164b61230000,selected_bg_color:#3da1f3753e1e,tooltip_fg_color:#000000000000,tooltip_bg_color:#9d9d9d9d9d9d
+CursorTheme=DMZ-White
+CursorSize=24
+NotificationTheme=ubuntu
