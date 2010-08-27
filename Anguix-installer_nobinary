@@ -243,7 +243,7 @@ gconftool-2 --unset /apps/panel/toplevels/top_panel_screen0/background/opacity
 gconftool-2 --unset /apps/panel/toplevels/top_panel_screen0/background/color
 gconftool-2 --unset /apps/panel/toplevels/bottom_panel_screen0/background/color
 # 2 - Metacity
-gconftool-2 --type string --set /apps/metacity/general/theme "" 
+gconftool-2 --type string --set /apps/metacity/general/theme "Ambiance" 
 gconftool-2 --unset /desktop/gnome/interface/gtk_color_scheme 
 # 3 - Temi
 gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme "Ambiance" 
