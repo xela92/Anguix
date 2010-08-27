@@ -7,7 +7,7 @@ echo "run this script as normal user."
 exit 0
 fi
 sudo -k
-ENV_VAR=`env |grep TERM=xterm |sed 's/=.*//g'` = "TERM"`
+ENV_VAR=`env |grep TERM=xterm |sed 's/=.*//g'`
 if [ "$ENV_VAR" = "TERM" ]; then GK=''; else GK='gk'; fi
 s=`"$GK"sudo cat /etc/issue |grep "Ubuntu"`
 if [ ! -n "$s" ]; then 
