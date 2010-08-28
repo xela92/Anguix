@@ -6,3 +6,6 @@ build.sh creates the Anguix-installer script. To create the installer, just do
 "./build.sh" inside the ~/Anguix folder.
 Then, install Anguix with ./Anguix-installer (you will be requested the 
 password)
+You can now install Anguix through GUI, just double click on the build.sh, do
+"exec", and then double click on Anguix-installer and "exec".
+Then you'll have a basic GUI.
