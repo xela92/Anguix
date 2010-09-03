@@ -145,7 +145,7 @@ if [ "$GK" = "gk" ]; then
 zenity --progress --pulsate --text="running postinst" &
 fi
 #NON TOCCATELO, questo lo gestisco io.
-sudo nautilus-scripts-installer
+sudo nautilus-scripts-installer install
 sudo cat /etc/anguix_lang.conf |grep S_LOCALE |sed 's/S_LOCALE:\ //g' >> /etc/locale.nopurge
 sudo cat /etc/anguix_lang.conf |grep M_LOCALE |sed 's/M_LOCALE:\ //g' >> /etc/locale.nopurge
 sudo cat /etc/anguix_lang.conf |grep UTF8_LOCALE |sed 's/UTF8_LOCALE:\ //g' >> /etc/locale.nopurge
@@ -225,6 +225,7 @@ if [ -e /etc/anguix-files.conf ]; then
 sudo rm /etc/anguix-files.conf
 fi
 sudo apt-get -y install evolution-exchange gnome-games gbrainy example-content empathy empathy-common gwibber rhythmbox tomboy yelp gnome-user-guide ubuntu-docs gnome-themes-ubuntu gnome-themes-selected
+sudo nautilus-scripts-installer remove
 if [ "$GK" = "gk" ]; then
 sudo pkill zenity
 fi
