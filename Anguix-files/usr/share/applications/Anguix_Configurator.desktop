@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Anguix Configurator
+Name[it]=Configuratore Anguix
+Comment=Configure Anguix!
+Comment[it]=Configura Anguix al meglio!
+Exec=anguixconf --gui
+Icon=anguixconf
+Terminal=false
+Type=Application
+Categories=Application;System;

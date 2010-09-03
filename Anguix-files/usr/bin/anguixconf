@@ -1,0 +1,12 @@
+#!/bin/bash
+#this is the official Anguix Configurator script
+#VAR
+DESK_FILES=`ls /usr/share/applications/anguix-desktops |sed 's/\.desktop//g'`
+case $1 in
+	--gui) CONF_QUEST=`zenity  --list  --text "Cosa vuoi configurare?" --radiolist  --column "" --column "" $DESK_FILES
+
+	'')echo "scrivi il nome del configuratore che vuoi usare, scegli nella lista" 
+	   echo $DESK_FILES
+	   read $DESK_NAME
+
+
