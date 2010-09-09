@@ -242,6 +242,7 @@ gconftool-2 --type string --set /desktop/gnome/interface/gtk_theme "Ambiance"
 gconftool-2 --type string --set /desktop/gnome/background/picture_filename "/usr/share/backgrounds/warty-final-ubuntu.png"
 # 4 - GDM
 sudo -u gdm gconftool-2 --set --type string /desktop/gnome/interface/gtk_theme "Ambiance"
+sudo -u gdm gconftool-2 --type string --set /desktop/gnome/background/picture_filename "/usr/share/backgrounds/warty-final-ubuntu.png"
 if [ "$GK" = "gk" ]; then
 sudo pkill zenity
 zenity --info --text="Anguix rimossa con successo."
