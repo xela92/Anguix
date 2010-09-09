@@ -257,6 +257,7 @@ prerm
 removal
 postrm
 gconf_unset
+gksudo ang_clean
 else
 exit 0
 fi
